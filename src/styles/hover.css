@@ -1,0 +1,11 @@
+/* Hover states from the design (style-hover). !important beats the inline base style. */
+.hv-1:hover{background:#3552C9 !important}
+.hv-2:hover{background:#4C6EF5 !important}
+.hv-3:hover{color:#1A1A17 !important}
+.hv-4:hover{background:#F7F8FF !important}
+.hv-5:hover{border-color:#1A1A17 !important}
+.hv-6:hover{border-color:#1A1A17 !important;color:#1A1A17 !important}
+.hv-7:hover{border-color:#4C6EF5 !important}
+.hv-8:hover{border-color:#4C6EF5 !important;background:#F7F8FF !important}
+.hv-9:hover{background:#4A4943 !important}
+.hv-10:hover{border-color:#C2255C !important}

@@ -1,0 +1,14 @@
+/* Global styles from the design */
+*{box-sizing:border-box}
+body{margin:0;background:#F4F2ED;font-family:Rubik,system-ui,sans-serif;color:#1A1A17;-webkit-font-smoothing:antialiased}
+a{color:#4C6EF5;text-decoration:none}
+a:hover{color:#3552C9;text-decoration:underline}
+input,select,textarea,button{font-family:inherit;font-size:inherit;color:inherit}
+input:focus,select:focus{outline:2px solid #4C6EF5;outline-offset:-1px}
+::placeholder{color:#A8A69C}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseRing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes sweep{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes dashRun{to{stroke-dashoffset:-40}}
