@@ -27,24 +27,39 @@ function saveToken(r) {
   return r;
 }
 
-/** Upload with progress (fetch has no upload progress, so XHR). */
-function uploadFile(path, field, file, onProgress) {
+/** PUT the raw file to a storage URL, with progress (fetch has no upload progress, so XHR). */
+function putFile(url, file, onProgress) {
   return new Promise((resolve, reject) => {
-    const fd = new FormData();
-    fd.append(field, file);
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', BASE + path);
-    if (token()) xhr.setRequestHeader('Authorization', 'Bearer ' + token());
+    xhr.open('PUT', url);
+    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
     xhr.upload.onprogress = (e) => { if (e.lengthComputable && onProgress) onProgress(Math.round((e.loaded / e.total) * 100)); };
-    xhr.onload = () => {
-      let data = null;
-      try { data = JSON.parse(xhr.responseText); } catch { /* ignore */ }
-      if (xhr.status >= 200 && xhr.status < 300) resolve(data);
-      else reject(new Error((data && data.error) || 'ההעלאה נכשלה'));
-    };
+    xhr.onload = () => (xhr.status >= 200 && xhr.status < 300 ? resolve() : reject(new Error('ההעלאה נכשלה')));
     xhr.onerror = () => reject(new Error('אין חיבור לשרת'));
-    xhr.send(fd);
+    xhr.send(file);
   });
+}
+
+/** DWG upload: server validates name/size -> browser uploads straight to storage -> server checks the DWG signature */
+async function uploadDrawing(file, onProgress) {
+  const meta = { name: file.name, size: file.size };
+  const s = await request('/uploads/drawing/start', { method: 'POST', body: meta });
+  let path = s.path;
+  if (s.blob) {
+    // Vercel Blob client, loaded only when used (keeps it out of the main bundle)
+    const { upload } = await import('@vercel/blob/client');
+    const b = await upload('drawings/drawing.dwg', file, {
+      access: 'private',
+      handleUploadUrl: BASE + '/uploads/blob',
+      contentType: 'application/octet-stream',
+      multipart: file.size > 10 * 1024 * 1024,
+      onUploadProgress: (e) => onProgress && onProgress(Math.round(e.percentage)),
+    }).catch(() => { throw new Error('ההעלאה נכשלה'); });
+    path = b.pathname;
+  } else {
+    await putFile(BASE + s.uploadUrl, file, onProgress);
+  }
+  return request('/uploads/drawing', { method: 'POST', body: { name: file.name, path } });
 }
 
 export const api = {
@@ -61,7 +76,7 @@ export const api = {
     submit: (body) => request('/projects', { method: 'POST', body }),
   },
   uploads: {
-    drawing: (file, onProgress) => uploadFile('/uploads/drawing', 'drawing', file, onProgress),
+    drawing: uploadDrawing,
   },
   exports: {
     create: (body) => request('/exports', { method: 'POST', body }),
