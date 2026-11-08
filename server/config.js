@@ -9,7 +9,8 @@ const num = (v) => (v === undefined || v === '' ? null : Number(v));
 
 export const config = {
   env: process.env.NODE_ENV || 'development',
-  port: Number(process.env.PORT || 8787),
+  // API_PORT wins over PORT: dev tools often set PORT for the web server (Vite) and would make both collide
+  port: Number(process.env.API_PORT || process.env.PORT || 8787),
   appUrl: (process.env.APP_URL || 'http://localhost:5173').replace(/\/$/, ''),
   apiPublicUrl: (process.env.API_PUBLIC_URL || process.env.APP_URL || 'http://localhost:8787').replace(/\/$/, ''),
   authSecret: process.env.AUTH_SECRET || 'dev-only-change-me',
@@ -18,6 +19,12 @@ export const config = {
   dataDir: path.resolve(ROOT, process.env.DATA_DIR || 'data'),
   uploadDir: path.resolve(ROOT, process.env.UPLOAD_DIR || 'uploads'),
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 80),
+  // set both -> Supabase DB + Storage (required on Vercel: its filesystem is read-only/ephemeral)
+  supabase: {
+    url: process.env.SUPABASE_URL || '',
+    serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+    bucket: process.env.SUPABASE_BUCKET || 'drawings',
+  },
 
   vatRate: Number(process.env.VAT_RATE || 0.18),
   // monthly prices in ILS before VAT. Not decided yet in the design ("—"), so empty by default.

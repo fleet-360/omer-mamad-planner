@@ -5,6 +5,7 @@
       "name": "omer-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
+      "env": { "API_PORT": "8787" },
       "port": 5173
     }
   ]
