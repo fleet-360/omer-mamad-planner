@@ -1,54 +1,52 @@
 // Storage for users / orders / projects / uploads / exports.
-// Supabase when SUPABASE_URL is set (production on Vercel), otherwise a JSON file (local demo, zero setup).
+// Postgres (Neon, from the Vercel Marketplace) when DATABASE_URL is set, otherwise a JSON file (local demo, zero setup).
 // Every call site goes through these async functions; `match` is a plain equality filter, e.g. { email }.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { createClient } from '@supabase/supabase-js';
+import { neon } from '@neondatabase/serverless';
 import { config } from './config.js';
 
-export const supabase = config.supabase.url
-  ? createClient(config.supabase.url, config.supabase.serviceKey, { auth: { persistSession: false, autoRefreshToken: false } })
-  : null;
-
+const EMPTY = { users: [], orders: [], projects: [], uploads: [], exports: [] };
 const newRow = (doc) => ({ id: doc.id || crypto.randomUUID(), createdAt: new Date().toISOString(), ...doc });
-const matches = (row, match) => Object.entries(match).every(([k, v]) => row[k] === v);
 
-// ------------------------------------------------------------------ Supabase: one table per collection, (id, data jsonb)
+// ------------------------------------------------------------------ Postgres: one table per collection, (id, data jsonb)
 // ponytail: documents in jsonb mirror the JSON store 1:1; move hot fields to real columns if reporting/queries need it.
-const unwrap = ({ data, error }) => { if (error) throw error; return data; };
-const col = (k) => (k === 'id' ? 'id' : `data->>${k}`);
-const where = (q, match) => Object.entries(match).reduce((q2, [k, v]) => q2.eq(col(k), String(v)), q);
+const sql = config.databaseUrl ? neon(config.databaseUrl) : null;
+const t = (table) => {
+  if (!(table in EMPTY)) throw new Error(`unknown table ${table}`); // table names are interpolated: whitelist only
+  return table;
+};
 
-const supabaseDb = {
+const pgDb = {
   async list(table, match = {}) {
-    return unwrap(await where(supabase.from(table).select('data'), match).order('created_at')).map((r) => r.data);
+    const rows = await sql.query(`select data from ${t(table)} where data @> $1::jsonb order by created_at`, [JSON.stringify(match)]);
+    return rows.map((r) => r.data);
   },
   async find(table, match) {
-    return unwrap(await where(supabase.from(table).select('data'), match).limit(1).maybeSingle())?.data || null;
+    const rows = await sql.query(`select data from ${t(table)} where data @> $1::jsonb limit 1`, [JSON.stringify(match)]);
+    return rows[0]?.data || null;
   },
   async countIdPrefix(table, prefix) {
-    const { count, error } = await supabase.from(table).select('id', { count: 'exact', head: true }).like('id', `${prefix}%`);
-    if (error) throw error;
-    return count;
+    const rows = await sql.query(`select count(*)::int as n from ${t(table)} where id like $1`, [`${prefix}%`]);
+    return rows[0].n;
   },
   async insert(table, doc) {
     const row = newRow(doc);
-    unwrap(await supabase.from(table).insert({ id: row.id, data: row }));
+    await sql.query(`insert into ${t(table)} (id, data) values ($1, $2::jsonb)`, [row.id, JSON.stringify(row)]);
     return row;
   },
   async update(table, id, patch) {
-    const row = await this.find(table, { id });
-    if (!row) return null;
-    Object.assign(row, patch, { updatedAt: new Date().toISOString() });
-    unwrap(await supabase.from(table).update({ data: row }).eq('id', id));
-    return row;
+    const rows = await sql.query(`update ${t(table)} set data = data || $2::jsonb where id = $1 returning data`, [
+      id, JSON.stringify({ ...patch, updatedAt: new Date().toISOString() }),
+    ]);
+    return rows[0]?.data || null;
   },
 };
 
 // ------------------------------------------------------------------ JSON file (data/db.json)
 const FILE = path.join(config.dataDir, 'db.json');
-const EMPTY = { users: [], orders: [], projects: [], uploads: [], exports: [] };
+const matches = (row, match) => Object.entries(match).every(([k, v]) => row[k] === v);
 let state = null;
 
 function load() {
@@ -93,4 +91,5 @@ const fileDb = {
   },
 };
 
-export const db = supabase ? supabaseDb : fileDb;
+export const dbKind = sql ? 'postgres' : 'file';
+export const db = sql ? pgDb : fileDb;

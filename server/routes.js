@@ -2,12 +2,12 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import express from 'express';
 import { config } from './config.js';
-import { db, supabase } from './db.js';
+import { db, dbKind } from './db.js';
 import { hashPassword, verifyPassword, issueToken } from './auth.js';
 import { PLANS, quote } from './plans.js';
 import { paymentProvider } from './services/payments/index.js';
 import { sendEmail, notifyOffice } from './services/email/index.js';
-import { startUpload, readHead, removeDrawing, saveLocal, inspectDwg, STORED_NAME } from './services/drawings.js';
+import { useBlob, startUpload, blobUploadToken, readStored, removeDrawing, saveLocal, inspectDwg, isStoredName, isLocalName } from './services/drawings.js';
 
 export const router = express.Router();
 
@@ -26,7 +26,7 @@ async function nextOrderId() {
 
 // ------------------------------------------------------------------ health
 router.get('/health', (_req, res) => {
-  res.json({ ok: true, db: supabase ? 'supabase' : 'file', payments: config.payments.provider, email: config.email.provider, demo: config.authDemo });
+  res.json({ ok: true, db: dbKind, files: useBlob ? 'blob' : 'local', payments: config.payments.provider, email: config.email.provider, demo: config.authDemo });
 });
 
 // ------------------------------------------------------------------ auth
@@ -118,18 +118,21 @@ router.get('/payments/orders/:id', wrap(async (req, res) => {
 }));
 
 // ------------------------------------------------------------------ drawings (DWG only)
-// 1) reserve a storage path and get a URL the browser uploads to directly
+// 1) validate name/size and tell the browser how to upload (Vercel Blob, or local PUT)
 router.post('/uploads/drawing/start', wrap(async (req, res) => {
   const { name, size } = req.body || {};
   if (path.extname(String(name || '')).toLowerCase() !== '.dwg') return bad(res, 'ניתן להעלות קובץ DWG בלבד');
   if (Number(size) > config.maxUploadMb * 1024 * 1024) return bad(res, `הקובץ גדול מ‑${config.maxUploadMb}MB`);
-  res.json(await startUpload());
+  res.json(startUpload());
 }));
 
-// local mode only (no Supabase): the "storage" the browser PUTs to
-if (!supabase) {
+if (useBlob) {
+  // Vercel Blob: short-lived client token, then the browser uploads straight to the private store
+  router.post('/uploads/blob', wrap(async (req, res) => res.json(await blobUploadToken(req))));
+} else {
+  // local mode: the "storage" the browser PUTs to
   router.put('/uploads/local/:file', express.raw({ type: () => true, limit: `${config.maxUploadMb}mb` }), (req, res) => {
-    if (!STORED_NAME.test(req.params.file)) return bad(res, 'bad name');
+    if (!isLocalName(req.params.file)) return bad(res, 'bad name');
     saveLocal(req.params.file, req.body);
     res.json({ ok: true });
   });
@@ -137,16 +140,18 @@ if (!supabase) {
 
 // 2) after the upload: check it's a real DWG and register it
 router.post('/uploads/drawing', wrap(async (req, res) => {
-  const { path: stored, name, size } = req.body || {};
-  if (!STORED_NAME.test(String(stored || ''))) return bad(res, 'לא נבחר קובץ');
-  const info = inspectDwg(await readHead(stored));
+  const { path: stored, name } = req.body || {};
+  if (!isStoredName(stored)) return bad(res, 'לא נבחר קובץ');
+  const file = await readStored(stored);
+  if (!file) return bad(res, 'לא נבחר קובץ');
+  const info = inspectDwg(file.head);
   if (!info.ok) {
     await removeDrawing(stored);
     return bad(res, 'הקובץ אינו קובץ DWG תקין');
   }
   const row = await db.insert('uploads', {
     userId: req.user?.sub || null, originalName: String(name || stored),
-    storedAs: stored, size: Number(size) || null, dwg: info.code, version: info.version,
+    storedAs: stored, size: file.size, dwg: info.code, version: info.version,
   });
   res.json({ id: row.id, name: row.originalName, size: row.size, version: info.version });
 }));

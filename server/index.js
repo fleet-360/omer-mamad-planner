@@ -4,6 +4,8 @@ import path from 'node:path';
 import express from 'express';
 import { config, ROOT } from './config.js';
 import { app } from './app.js';
+import { dbKind } from './db.js';
+import { useBlob } from './services/drawings.js';
 
 // npm start after npm run build: serve the built client too (on Vercel the CDN does this)
 const dist = path.join(ROOT, 'dist');
@@ -15,5 +17,5 @@ if (fs.existsSync(dist)) {
 }
 
 app.listen(config.port, () => {
-  console.log(`API on http://localhost:${config.port}  ·  db=${config.supabase.url ? 'supabase' : 'file'}  ·  payments=${config.payments.provider}  ·  email=${config.email.provider}  ·  demo-auth=${config.authDemo}`);
+  console.log(`API on http://localhost:${config.port}  ·  db=${dbKind}  ·  files=${useBlob ? 'blob' : 'local'}  ·  payments=${config.payments.provider}  ·  email=${config.email.provider}  ·  demo-auth=${config.authDemo}`);
 });

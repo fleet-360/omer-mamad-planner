@@ -18,14 +18,12 @@ npm run dev
 
 ## העלאה ל‑Vercel
 
-1. **Supabase**: יוצרים פרויקט (אזור Frankfurt), ומריצים פעם אחת את `supabase/schema.sql` ב‑SQL Editor (טבלאות + bucket פרטי `drawings`).
-2. **Vercel**: Add New → Project → מייבאים את ה‑repo מ‑GitHub. ההגדרות מזוהות אוטומטית (`vercel.json`).
-3. **Environment Variables** ב‑Vercel: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `AUTH_SECRET` (מחרוזת ארוכה ואקראית), `AUTH_DEMO=false`, `APP_URL` ו‑`API_PUBLIC_URL` = כתובת האתר, ושאר המשתנים מ‑`.env.example` (דוא״ל, סליקה, מחירים).
+1. **Vercel**: Add New → Project → מייבאים את ה‑repo מ‑GitHub. ההגדרות מזוהות אוטומטית (`vercel.json`).
+2. **Storage** בפרויקט: Create → **Neon** (מסד נתונים) ו‑Create → **Blob** (גישה **Private**), ומחברים את שניהם לפרויקט. `DATABASE_URL` ו‑`BLOB_READ_WRITE_TOKEN` נוספים אוטומטית. מריצים פעם אחת את `db/schema.sql` ב‑SQL Editor של Neon.
+3. **Environment Variables**: `AUTH_SECRET` (מחרוזת ארוכה ואקראית), `AUTH_DEMO=false`, `APP_URL` ו‑`API_PUBLIC_URL` = כתובת האתר, ושאר המשתנים מ‑`.env.example` (דוא״ל, סליקה, מחירים). אחרי הוספת משתנים צריך Redeploy.
 4. **דומיין**: Project → Settings → Domains, ואז מעדכנים את `APP_URL` / `API_PUBLIC_URL` ואת כתובות ה‑webhook אצל חברת הסליקה.
 
-האתר מוגש מה‑CDN של Vercel, וה‑API רץ כפונקציה אחת (`api/index.js` → `server/app.js`). קבצי DWG עולים ישירות מהדפדפן ל‑Supabase Storage (Vercel מגביל גוף בקשה ל‑4.5MB), והשרת בודק את חתימת ה‑DWG אחרי ההעלאה.
-
-> בתוכנית החינמית של Supabase כל קובץ מוגבל ל‑50MB. להעלאות של עד 80MB צריך Supabase Pro.
+האתר מוגש מה‑CDN של Vercel, וה‑API רץ כפונקציה אחת (`api/index.js` → `server/app.js`). קבצי DWG עולים ישירות מהדפדפן ל‑Vercel Blob פרטי (Vercel מגביל גוף בקשה ל‑4.5MB), והשרת בודק את חתימת ה‑DWG אחרי ההעלאה.
 
 ## מבנה
 
@@ -40,11 +38,11 @@ server/
   routes.js       auth · payments · uploads · projects · exports · billing
   services/payments/  mock · grow · cardcom
   services/email/     console · smtp · resend + תבניות מייל בעברית
-  services/drawings.js העלאת DWG בלבד (סיומת + חתימת קובץ + עד 80MB), ישירות ל‑Supabase Storage
-  db.js           Supabase כשמוגדר SUPABASE_URL, אחרת קובץ JSON מקומי (data/db.json)
+  services/drawings.js העלאת DWG בלבד (סיומת + חתימת קובץ + עד 80MB), ישירות ל‑Vercel Blob
+  db.js           Postgres (Neon) כשמוגדר DATABASE_URL, אחרת קובץ JSON מקומי (data/db.json)
   app.js          אפליקציית Express (משותפת ל‑index.js המקומי ול‑api/index.js של Vercel)
 api/index.js      נקודת הכניסה של Vercel
-supabase/schema.sql  טבלאות + bucket, מריצים פעם אחת
+db/schema.sql     טבלאות, מריצים פעם אחת ב‑Neon
 ```
 
 ## חיבור סליקה
@@ -75,4 +73,4 @@ supabase/schema.sql  טבלאות + bucket, מריצים פעם אחת
 
 - **מנוע ההצבה וההפקה** (קריאת שכבות DWG, הצבה אמיתית, יצירת DWG/PDF). ה‑endpoint `POST /api/exports` קיים ומחזיר `queued`, וכאן יתחבר המנוע.
 - **הרשאות משתמשים**: `AUTH_DEMO=true` מאפשר כניסה עם כל דוא״ל לצורך הדגמה. ב‑production מגדירים `AUTH_DEMO=false`.
-- **מסד נתונים**: ב‑Vercel חובה Supabase (מערכת הקבצים שם זמנית). בלי `SUPABASE_URL` המערכת משתמשת בקובץ JSON מקומי, להדגמה בלבד.
+- **מסד נתונים וקבצים**: ב‑Vercel חובה Neon + Blob (מערכת הקבצים שם זמנית). בלי `DATABASE_URL` / `BLOB_READ_WRITE_TOKEN` המערכת משתמשת בקובץ JSON מקומי, להדגמה בלבד.

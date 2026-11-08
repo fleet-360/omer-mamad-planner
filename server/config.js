@@ -19,12 +19,10 @@ export const config = {
   dataDir: path.resolve(ROOT, process.env.DATA_DIR || 'data'),
   uploadDir: path.resolve(ROOT, process.env.UPLOAD_DIR || 'uploads'),
   maxUploadMb: Number(process.env.MAX_UPLOAD_MB || 80),
-  // set both -> Supabase DB + Storage (required on Vercel: its filesystem is read-only/ephemeral)
-  supabase: {
-    url: process.env.SUPABASE_URL || '',
-    serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
-    bucket: process.env.SUPABASE_BUCKET || 'drawings',
-  },
+  // Required on Vercel (its filesystem is read-only/ephemeral). Both are injected automatically when the
+  // Neon database and the Blob store are connected to the project (Vercel -> Storage). Empty = local files.
+  databaseUrl: process.env.DATABASE_URL || process.env.POSTGRES_URL || '',
+  blobToken: process.env.BLOB_READ_WRITE_TOKEN || '',
 
   vatRate: Number(process.env.VAT_RATE || 0.18),
   // monthly prices in ILS before VAT. Not decided yet in the design ("—"), so empty by default.

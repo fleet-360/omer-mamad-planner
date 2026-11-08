@@ -40,12 +40,26 @@ function putFile(url, file, onProgress) {
   });
 }
 
-/** DWG upload: reserve a path -> browser uploads straight to storage -> server checks the DWG signature */
+/** DWG upload: server validates name/size -> browser uploads straight to storage -> server checks the DWG signature */
 async function uploadDrawing(file, onProgress) {
   const meta = { name: file.name, size: file.size };
   const s = await request('/uploads/drawing/start', { method: 'POST', body: meta });
-  await putFile(/^https?:/.test(s.uploadUrl) ? s.uploadUrl : BASE + s.uploadUrl, file, onProgress);
-  return request('/uploads/drawing', { method: 'POST', body: { ...meta, path: s.path } });
+  let path = s.path;
+  if (s.blob) {
+    // Vercel Blob client, loaded only when used (keeps it out of the main bundle)
+    const { upload } = await import('@vercel/blob/client');
+    const b = await upload('drawings/drawing.dwg', file, {
+      access: 'private',
+      handleUploadUrl: BASE + '/uploads/blob',
+      contentType: 'application/octet-stream',
+      multipart: file.size > 10 * 1024 * 1024,
+      onUploadProgress: (e) => onProgress && onProgress(Math.round(e.percentage)),
+    }).catch(() => { throw new Error('ההעלאה נכשלה'); });
+    path = b.pathname;
+  } else {
+    await putFile(BASE + s.uploadUrl, file, onProgress);
+  }
+  return request('/uploads/drawing', { method: 'POST', body: { name: file.name, path } });
 }
 
 export const api = {
