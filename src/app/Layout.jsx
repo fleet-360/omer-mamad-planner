@@ -10,10 +10,13 @@ import Library from '../screens/Library.jsx';
 import Billing from '../screens/Billing.jsx';
 import Settings from '../screens/Settings.jsx';
 import { sx } from '../ui/dom.jsx';
+import { useSyncExternalStore } from 'react';
+import { getLang, subscribe } from './i18n.js';
 
 export default function Layout({ v }) {
+  const lang = useSyncExternalStore(subscribe, getLang);
   return (
-    <div dir="rtl" style={sx("min-height:100vh;background:#F4F2ED;display:flex;flex-direction:column")}>
+    <div dir={lang === 'he' ? 'rtl' : 'ltr'} style={sx("min-height:100vh;background:#F4F2ED;display:flex;flex-direction:column")}>
       <TopBar v={v} />
       {v.isLogin ? <Login v={v} /> : null}
       {v.isSignup ? <Signup v={v} /> : null}

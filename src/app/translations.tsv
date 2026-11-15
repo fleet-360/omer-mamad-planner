@@ -1,0 +1,400 @@
+ניתן להעלות קובץ DWG בלבד	Only DWG files can be uploaded	Seuls les fichiers DWG sont acceptés
+הקובץ גדול מ‑80MB	The file is larger than 80MB	Le fichier dépasse 80 Mo
+הקובץ ריק	The file is empty	Le fichier est vide
+מגורים	Residential	Résidentiel
+חדש	New	Nouveau
+אדריכלות	Architecture	Architecture
+מגדל הדר, בניין ב׳	Hadar Tower, Building B	Tour Hadar, bâtiment B
+רחוב הדר 12, בני ברק	12 Hadar St., Bnei Brak	12 rue Hadar, Bnei Brak
+יש	Yes	Oui
+אין	No	Non
+ממ״ד (דירתי)	Mamad (apartment)	Mamad (appartement)
+לא	No	Non
+גג	Roof	Toit
+פתוחה	Open	Ouverte
+מיני מרכזי + מפוצל	Mini-central + split	Mini-central + split
+כן	Yes	Oui
+רגיל	Standard	Standard
+תוספת ממ״ד למבנה קיים	Mamad added to an existing building	Ajout d'un Mamad à un bâtiment existant
+כולל מבואה	Including lobby	Avec entrée
+הדף רסיסים	Blast and fragments	Souffle et éclats
+80 ס״מ	80 cm	80 cm
+דו כנפי	Double-leaf	Double vantail
+מיני מרכזי כללי	General mini-central	Mini-central général
+תשתיות גז מלאות	Full gas infrastructure	Réseau de gaz complet
+נדרש	Required	Requis
+מסתור	Service enclosure	Local technique
+4.2MB · 1:50 · 14 שכבות · זוהו 2 גרעיני ממ״ד	4.2MB · 1:50 · 14 layers · 2 Mamad units detected	4,2 Mo · 1:50 · 14 calques · 2 unités Mamad détectées
+אחר	Other	Autre
+התשלום נכשל	Payment failed	Le paiement a échoué
+התשלום בוטל או נכשל — אפשר לנסות שוב	Payment was cancelled or failed. You can try again	Le paiement a été annulé ou a échoué. Vous pouvez réessayer
+השליחה נכשלה	Sending failed	L'envoi a échoué
+נסה שוב	Try again	Réessayer
+מעלה…	Uploading…	Envoi…
+ההעלאה נכשלה	Upload failed	L'envoi a échoué
+התחברות	Log in	Connexion
+הרשמה	Sign up	Inscription
+חבילות	Plans	Offres
+פתיחת פרויקט	New project	Nouveau projet
+שרטוט אינטראקטיבי	Interactive drawing	Plan interactif
+הצבה אוטומטית	Auto placement	Placement automatique
+בדיקה ואישור	Review and approval	Contrôle et validation
+הפקת קובץ	Export file	Générer le fichier
+ספריית אלמנטים	Element library	Bibliothèque d'éléments
+חיוב	Billing	Facturation
+הגדרות תקן	Standard settings	Paramètres de norme
+זהות	Branding	Identité
+חוויית הצבה	Placement experience	Expérience de placement
+עמוד שרטוט	Drawing page	Page du plan
+מספר טלפון לא תקין	Invalid phone number	Numéro de téléphone invalide
+כתובת דוא״ל לא תקינה	Invalid email address	Adresse e-mail invalide
+יש להזין מספר	Enter a number	Saisissez un nombre
+לפחות 8 תווים	At least 8 characters	8 caractères minimum
+שם פרטי	First name	Prénom
+ישראל	Israel	Israël
+שם משפחה	Last name	Nom
+כהן	Cohen	Cohen
+דואר אלקטרוני	Email	E-mail
+סיסמה	Password	Mot de passe
+שם המשרד	Firm name	Nom du cabinet
+אדריכלים בע״מ	Architects Ltd.	Architectes SARL
+טלפון המשרד	Office phone	Téléphone du cabinet
+דוא״ל המשרד	Office email	E-mail du cabinet
+כתובת	Address	Adresse
+רחוב, עיר	Street, city	Rue, ville
+שם	Name	Nom
+טלפון נייד	Mobile phone	Téléphone portable
+דוא״ל	Email	E-mail
+מספר כרטיס	Card number	Numéro de carte
+תוקף	Expiry	Expiration
+ת״ז בעל הכרטיס	Cardholder ID	N° d'identité du titulaire
+שם בעל הכרטיס	Cardholder name	Nom du titulaire
+ניסיון	Trial	Essai
+שרטוט בודד, ללא חיוב	One drawing, free of charge	Un plan, gratuit
+בסיס	Basic	Basique
+עד 10 שרטוטים · משתמש אחד	Up to 10 drawings · 1 user	Jusqu'à 10 plans · 1 utilisateur
+מקצועי	Professional	Professionnel
+עד 40 שרטוטים · 3 משתמשים	Up to 40 drawings · 3 users	Jusqu'à 40 plans · 3 utilisateurs
+משרד	Office	Cabinet
+ללא הגבלה	Unlimited	Illimité
+שם הפרויקט	Project name	Nom du projet
+כתובת הפרויקט	Project address	Adresse du projet
+שם יזם	Developer name	Nom du promoteur
+איש קשר	Contact person	Contact
+טלפון	Phone	Téléphone
+מייל	Email	E-mail
+שם חברה	Company name	Nom de l'entreprise
+מנהל פרויקט	Project manager	Chef de projet
+מהנדס ביצוע	Site engineer	Ingénieur travaux
+מספר דירות	Number of apartments	Nombre d'appartements
+שטח (מ״ר)	Area (m²)	Surface (m²)
+משרדים (מ״ר)	Offices (m²)	Bureaux (m²)
+תעשייה (מ״ר)	Industry (m²)	Industrie (m²)
+גובה תחתית תקרת בטון (ס״מ)	Concrete ceiling soffit height (cm)	Hauteur sous dalle béton (cm)
+גובה פני ריצוף ותקרה (ס״מ)	Floor finish and ceiling height (cm)	Hauteur sol fini et plafond (cm)
+מיקום הבניין	Building location	Emplacement du bâtiment
+עיר / שכונה / גוש וחלקה	City / neighborhood / block and parcel	Ville / quartier / section et parcelle
+מיקום הקומה הטכנית	Technical floor location	Emplacement de l'étage technique
+מקור ההזנה לממ״ד	Mamad supply source	Source d'alimentation du Mamad
+לדוגמה: יחידה פנימית במסדרון	e.g. indoor unit in the corridor	Ex. : unité intérieure dans le couloir
+מיקום היחידה	Unit location	Emplacement de l'unité
+גג / מסתור / חצר	Roof / enclosure / yard	Toit / local technique / cour
+פרטי פרויקט	Project details	Détails du projet
+קבלן ביצוע	Contractor	Entreprise de travaux
+חברת פיקוח	Supervision company	Bureau de contrôle
+אפיון פרויקט	Project profile	Caractéristiques du projet
+מיזוג	Air conditioning	Climatisation
+העלאת השרטוט	Drawing upload	Dépôt du plan
+סיכום ושליחה	Summary and submit	Récapitulatif et envoi
+סוג	Type	Type
+סוג מרחב מוגן	Protected space type	Type d'espace protégé
+תוכניות מיגון מאושרות	Approved protection plans	Plans de protection approuvés
+כן · קובץ צורף	Yes · file attached	Oui · fichier joint
+כן · לא צורף קובץ	Yes · no file attached	Oui · aucun fichier joint
+תחתית תקרת בטון	Concrete ceiling soffit	Sous-face de la dalle
+ס״מ	cm	cm
+פני ריצוף ותקרה	Floor finish and ceiling	Sol fini et plafond
+קומה טכנית	Technical floor	Étage technique
+קיימת	Exists	Existant
+שיטת מיזוג	AC system	Système de climatisation
+מפוצל לכל החדרים	Split in every room	Split dans chaque pièce
+מקור הזנה לממ״ד	Mamad supply source	Source d'alimentation du Mamad
+יחידת VRF חיצונית	Outdoor VRF unit	Unité VRF extérieure
+מסומנת ★	Marked ★	Marquée ★
+מעברי קיר / רצפה	Wall / floor passages	Passages mur / sol
+ת״י 4442 חלק 5	SI 4442 part 5	Norme israélienne 4442, partie 5
+קובץ	File	Fichier
+דירה 3	Apartment 3	Appartement 3
+א	A	A
+ב	B	B
+ממתין	Pending	En attente
+מריץ…	Running…	En cours…
+לאישור	To approve	À valider
+אושר	Approved	Validé
+נדחה	Rejected	Refusé
+הושלם	Completed	Terminé
+פועל	Running	En cours
+6 אלמנטים הוצבו · אין התנגשות עם פתחים	6 elements placed · no clash with openings	6 éléments placés · aucun conflit avec les ouvertures
+מעבר הכבילה במרחק 26 ס״מ מהפינה — מומלץ 30	Cable passage is 26 cm from the corner. 30 recommended	Passage de câbles à 26 cm du coin. 30 recommandés
+6 אלמנטים הוצבו לפי מיקום מנוע במסתור	6 elements placed based on the outdoor unit in the enclosure	6 éléments placés selon l'unité extérieure dans le local technique
+כל הבדיקות עברו	All checks passed	Tous les contrôles sont réussis
+3א	3A	3A
+3ב	3B	3B
+6 אלמנטים · ממ״ד 300/300	6 elements · Mamad 300/300	6 éléments · Mamad 300/300
+מריץ מחדש את ההצבה…	Re-running placement…	Nouveau placement en cours…
+הדירה אושרה	Apartment approved	Appartement validé
+הדירה נדחתה — נדרש תכנון מחדש	Apartment rejected. Needs to be redesigned	Appartement refusé. À reprendre
+פרטי המשתמש	User details	Vos informations
+שם, דוא״ל, סיסמה	Name, email, password	Nom, e-mail, mot de passe
+משרד ופעילות	Firm and activity	Cabinet et activité
+סיווג ותחום עיסוק	Category and field	Catégorie et domaine
+תשלום	Payment	Paiement
+סליקה מאובטחת	Secure payment	Paiement sécurisé
+פירוט תחום העיסוק	Field of activity details	Précisez votre domaine
+מעבד…	Processing…	Traitement…
+התחל ניסיון	Start trial	Commencer l'essai
+תשלום ואישור	Pay and confirm	Payer et confirmer
+המשך	Continue	Continuer
+תכנון	Design	Conception
+ביצוע	Construction	Travaux
+אינסטלציה	Plumbing	Plomberie
+קונסטרוקציה	Structural	Structure
+יועץ	Consultant	Consultant
+תמ״א	TAMA 38	TAMA 38
+רמ״ה	RAMA	RAMA
+תעשייתי	Industrial	Industriel
+ציבורי	Public	Public
+מסחרי	Commercial	Commercial
+החשבון נפתח	Account created	Compte créé
+התשלום התקבל	Payment received	Paiement reçu
+חבילת ניסיון · שרטוט אחד	Trial plan · 1 drawing	Offre d'essai · 1 plan
+קבלה נשלחה ל‑	Receipt sent to 	Reçu envoyé à
+כרטיס אשראי	Credit card	Carte bancaire
+ביט	Bit	Bit
+שרטוט אחד בלבד	One drawing only	Un seul plan
+כל רכיבי הממ״ד	All Mamad components	Tous les éléments du Mamad
+ייצוא PDF עם סימן מים	PDF export with watermark	Export PDF avec filigrane
+אופציה 1 · בסיס	Option 1 · Basic	Option 1 · Basique
+לחודש	per month	par mois
+בחר חבילה	Choose plan	Choisir l'offre
+עד 10 שרטוטים בחודש	Up to 10 drawings per month	Jusqu'à 10 plans par mois
+ייצוא DWG ו‑PDF	DWG and PDF export	Export DWG et PDF
+תמיכה בדוא״ל	Email support	Support par e-mail
+אופציה 2 · מקצועי	Option 2 · Professional	Option 2 · Professionnel
+נבחר	Selected	Sélectionnée
+עד 40 שרטוטים בחודש	Up to 40 drawings per month	Jusqu'à 40 plans par mois
+3 משתמשים במשרד	3 users per firm	3 utilisateurs par cabinet
+הגדרות תקן והעדפות משרד	Standard settings and firm preferences	Paramètres de norme et préférences du cabinet
+ספריית בלוקים להורדה	Downloadable block library	Bibliothèque de blocs à télécharger
+תמיכה טלפונית	Phone support	Support téléphonique
+אופציה 3 · משרד	Option 3 · Office	Option 3 · Cabinet
+ללא הגבלה · משתמשים ללא הגבלה	Unlimited · unlimited users	Illimité · utilisateurs illimités
+שרטוטים ומשתמשים ללא הגבלה	Unlimited drawings and users	Plans et utilisateurs illimités
+ניהול הרשאות במשרד	Firm permission management	Gestion des droits du cabinet
+תבניות כותרת שרטוט מותאמות	Custom drawing title blocks	Cartouches de plan personnalisés
+ליווי מקצועי בהטמעה	Onboarding support	Accompagnement à la mise en place
+טיוטה נשמרה	Draft saved	Brouillon enregistré
+שולח…	Sending…	Envoi…
+שלח	Send	Envoyer
+ממ״ק (קומתי)	Mamak (floor shelter)	Mamak (abri d'étage)
+ממ״מ (מוסדי)	Mamam (institutional)	Mamam (institutionnel)
+מרתף	Basement	Sous-sol
+סגורה	Closed	Fermée
+מערכת נפרדת	Separate system	Système séparé
+נקרא בהצלחה	Read successfully	Lu avec succès
+כל השכבות	All layers	Tous les calques
+פרטי ממ״ד	Mamad details	Détails Mamad
+שחרר על השרטוט להצבה	Drop on the drawing to place	Déposez sur le plan pour placer
+גרור למיקום · שחרר לנעילה	Drag into position · release to lock	Faites glisser · relâchez pour fixer
+גרור אלמנט מהסרגל · גלגלת לזום · גרירת רקע להזזה · מעבר על אלמנט לפרט מוגדל	Drag an element from the bar · scroll to zoom · drag the background to pan · hover an element for a close-up	Glissez un élément depuis la barre · molette pour zoomer · glissez le fond pour déplacer · survolez un élément pour l'agrandir
+12 אלמנטים ב‑2 גרעיני ממ״ד · 2 אזהרות · אשר כל דירה בנפרד	12 elements in 2 Mamad units · 2 warnings · approve each apartment separately	12 éléments dans 2 unités Mamad · 2 avertissements · validez chaque appartement séparément
+קוטר וסוג שרוולי אוורור	Ventilation sleeve diameter and type	Diamètre et type des manchons de ventilation
+שני שרוולי 4״ חרושתיים מגולוונים בכל גרעין.	Two factory-made galvanized 4" sleeves in each unit.	Deux manchons 4" galvanisés préfabriqués dans chaque unité.
+3א · 3ב	3A · 3B	3A · 3B
+גובה מרכז צינור כניסה	Intake pipe center height	Hauteur de l'axe du tuyau d'entrée
+30 ס״מ מפני הריצוף, בהתאם להנחיות ההצבה.	30 cm above the floor finish, per the placement guidelines.	30 cm au-dessus du sol fini, selon les règles de placement.
+מיקום אלכסוני של יציאת האוויר	Diagonal position of the air outlet	Position en diagonale de la sortie d'air
+היציאה ממוקמת באלכסון לפתח הכניסה.	The outlet is diagonal to the intake.	La sortie est en diagonale de l'entrée.
+מרחק מעבר כבילה מפינה	Cable passage distance from corner	Distance du passage de câbles au coin
+26 ס״מ בפועל, מומלץ 30 ס״מ. אינו חוסם הפקה.	26 cm actual, 30 cm recommended. Does not block export.	26 cm réels, 30 cm recommandés. Ne bloque pas la génération.
+2 צינורות 8״ מעל משקוף הדלת	Two 8" pipes above the door frame	Deux tuyaux 8" au-dessus du cadre de porte
+נדרש בשל בחירת מיזוג מיני מרכזי. מרווח 10 ס״מ.	Required because mini-central AC was selected. 10 cm spacing.	Requis car la climatisation mini-centrale a été choisie. Espacement de 10 cm.
+הספק יחידת עומר לא הוזן	Omer unit capacity not entered	Puissance de l'unité Omer non saisie
+ההצבה בוצעה לפי מקסימום 3 כ״ס. יש להשלים לפני הגשה.	Placement assumed a maximum of 3 HP. Fill this in before submitting.	Placement calculé pour 3 CV maximum. À compléter avant le dépôt.
+חפיפה בין ספרינקלר לתוואי תקרה	Sprinkler overlaps the ceiling layout	Le sprinkler chevauche le tracé du plafond
+מעבר הספרינקלר חופף לקורה. נדרשת הזזה של 12 ס״מ.	The sprinkler passage overlaps a beam. Move it by 12 cm.	Le passage du sprinkler chevauche une poutre. Décalage de 12 cm requis.
+DWG · שכבות מלאות	DWG · all layers	DWG · tous les calques
+שכבת OMER-DETAILS מעל שרטוט האדריכל	OMER-DETAILS layer over the architect's drawing	Calque OMER-DETAILS sur le plan de l'architecte
+PDF · A2 להגשה	PDF · A2 for submission	PDF · A2 pour le dépôt
+כולל כותרת שרטוט ורשימת סימונים	Includes title block and legend	Avec cartouche et légende
+הופק · הפק שוב	Exported · export again	Généré · générer à nouveau
+הפק והורד	Export and download	Générer et télécharger
+חבילת מקצועי · ספטמבר 2026	Professional plan · September 2026	Offre Professionnel · septembre 2026
+שולם	Paid	Payé
+חבילת מקצועי · אוגוסט 2026	Professional plan · August 2026	Offre Professionnel · août 2026
+חבילת בסיס · יולי 2026	Basic plan · July 2026	Offre Basique · juillet 2026
+שדרוג חבילה · יוני 2026	Plan upgrade · June 2026	Changement d'offre · juin 2026
+זוכה	Refunded	Remboursé
+כללי הצבה אוטומטית	Auto placement rules	Règles de placement automatique
+גובה מרכז צינור כניסה 4״	4" intake pipe center height	Hauteur de l'axe du tuyau d'entrée 4"
+ס״מ מפני הריצוף	cm above floor finish	cm au-dessus du sol fini
+גובה מרכז צינור יציאה 4״	4" outlet pipe center height	Hauteur de l'axe du tuyau de sortie 4"
+מרווח בין צינורות 8״	Spacing between 8" pipes	Espacement entre tuyaux 8"
+התנהגות המערכת	System behavior	Comportement du système
+הוסף ספרינקלר כברירת מחדל	Add a sprinkler by default	Ajouter un sprinkler par défaut
+כאשר לא צוין אחרת בשלב הבסיס	Unless stated otherwise in the basic step	Sauf indication contraire à l'étape de base
+שמור את שכבות האדריכל בייצוא	Keep the architect's layers in exports	Conserver les calques de l'architecte à l'export
+בכל קובץ DWG שמופק	In every exported DWG file	Dans chaque fichier DWG généré
+צינור אוורור כניסה 4״	4" air intake pipe	Tuyau d'entrée d'air 4"
+שרוול חרושתי מגולוון בקוטר 4״	Factory-made galvanized 4" sleeve	Manchon préfabriqué galvanisé 4"
+גובה מרכז 30 ס״מ מפני הריצוף	Center 30 cm above floor finish	Axe à 30 cm du sol fini
+מרחק מינימלי 40 ס״מ מפינה פנימית	At least 40 cm from an inside corner	Au moins 40 cm d'un angle intérieur
+ממוקם בקיר חוץ, בצד הנגדי ליציאה	In an outer wall, opposite the outlet	Dans un mur extérieur, à l'opposé de la sortie
+צינור אוורור יציאה 4״	4" air outlet pipe	Tuyau de sortie d'air 4"
+גובה מרכז 200 ס״מ מפני הריצוף	Center 200 cm above floor finish	Axe à 200 cm du sol fini
+מותקן באלכסון לפתח הכניסה	Installed diagonal to the intake	Installé en diagonale de l'entrée
+כולל מכסה אטימה נשלף	With removable sealing cap	Avec bouchon d'étanchéité amovible
+התקן עומר מקורי	Original Omer device	Dispositif Omer d'origine
+התקן מקורי לשילוב מזגן מפוצל בממ״ד	Original device for a split AC in the Mamad	Dispositif d'origine pour un climatiseur split dans le Mamad
+הספק עד 3 כ״ס ליחידה	Up to 3 HP per unit	Jusqu'à 3 CV par unité
+מרחק מינימלי 15 ס״מ מהתקרה	At least 15 cm from the ceiling	Au moins 15 cm du plafond
+נדרשת גישה לתחזוקה מצד הממ״ד	Maintenance access needed from the Mamad side	Accès de maintenance requis côté Mamad
+2 צינורות 8״ מעל הדלת	Two 8" pipes above the door	Deux tuyaux 8" au-dessus de la porte
+נדרש במיזוג מיני מרכזי בלבד	Only needed for mini-central AC	Requis uniquement en climatisation mini-centrale
+מותקנים מעל משקוף הדלת	Installed above the door frame	Installés au-dessus du cadre de porte
+מרווח 10 ס״מ בין הצינורות	10 cm between the pipes	10 cm entre les tuyaux
+שרוולים חרושתיים עם מכסי הדף	Factory-made sleeves with blast caps	Manchons préfabriqués avec bouchons anti-souffle
+מעבר ספרינקלר	Sprinkler passage	Passage de sprinkler
+מעבר חרושתי לצינור כיבוי	Factory-made passage for the fire pipe	Passage préfabriqué pour le tuyau incendie
+ממוקם בתקרת הממ״ד	In the Mamad ceiling	Dans le plafond du Mamad
+מרחק מינימלי 30 ס״מ מקיר	At least 30 cm from a wall	Au moins 30 cm d'un mur
+נדרש רק כאשר סומן ״נדרש״ בשלב הבסיס	Only needed when marked "Required" in the basic step	Requis seulement si « Requis » est coché à l'étape de base
+מעבר כבילה חרושתי	Factory-made cable passage	Passage de câbles préfabriqué
+מעבר חרושתי אטום לכבילת חשמל ותקשורת	Sealed factory-made passage for power and data cables	Passage préfabriqué étanche pour câbles électriques et télécom
+גובה מרכז 220 ס״מ מפני הריצוף	Center 220 cm above floor finish	Axe à 220 cm du sol fini
+מותקן בקיר הפנימי, לא בקיר חוץ	In the inner wall, not an outer wall	Dans le mur intérieur, pas dans un mur extérieur
+כולל אטימת ג׳ל לאחר השחלה	Gel-sealed after the cables are pulled	Étanchéité au gel après passage des câbles
+קריאת שכבות השרטוט	Reading drawing layers	Lecture des calques du plan
+זיהוי גרעיני ממ״ד	Detecting Mamad units	Détection des unités Mamad
+מיקום צינורות אוורור 4״	Placing 4" ventilation pipes	Placement des tuyaux de ventilation 4"
+התקן עומר ומעברי מיזוג 8״	Omer device and 8" AC passages	Dispositif Omer et passages de climatisation 8"
+ספרינקלר ומעבר כבילה	Sprinkler and cable passage	Sprinkler et passage de câbles
+בדיקת תקן והנחיות פיקוד העורף	Checking the standard and Home Front Command rules	Contrôle de la norme et des règles du Commandement du front intérieur
+חיוב וחשבוניות	Billing and invoices	Facturation et factures
+החבילה הנוכחית	Current plan	Offre actuelle
+חידוש ב‑01.10.2026	Renews on 01.10.2026	Renouvellement le 01.10.2026
+שינוי חבילה	Change plan	Changer d'offre
+ניצול שרטוטים	Drawings used	Plans utilisés
+/ 40 בחודש	/ 40 per month	/ 40 par mois
+אמצעי תשלום	Payment method	Moyen de paiement
+תוקף 08/29	Expires 08/29	Expire 08/29
+עדכון כרטיס	Update card	Mettre à jour la carte
+חשבונית	Invoice	Facture
+תיאור	Description	Description
+סכום	Amount	Montant
+מצב	Status	Statut
+מגדל הדר · קומה 3	Hadar Tower · Floor 3	Tour Hadar · Étage 3
+התאם למסך	Fit to screen	Ajuster à l'écran
+בטל הצבה	Undo placement	Annuler le placement
+תכנון ממ״דים אוטומטי	Automatic Mamad design	Conception automatique des Mamad
+לבדיקה ואישור	To review and approval	Vers le contrôle et la validation
+ממ״ד · דירה 3א	Mamad · Apartment 3A	Mamad · Appartement 3A
+ממ״ד · דירה 3ב	Mamad · Apartment 3B	Mamad · Appartement 3B
+סלון	Living room	Salon
+חדר שינה	Bedroom	Chambre
+מטבח	Kitchen	Cuisine
+חתך · הגדלה 1:5	Section · 1:5 detail	Coupe · détail 1:5
+הורד DWG	Download DWG	Télécharger le DWG
+רכיבי ממ״ד	Mamad components	Éléments du Mamad
+מצב ההצבה	Placement status	État du placement
+מריץ על 2 גרעיני ממ״ד · נותרו	Running on 2 Mamad units · remaining	En cours sur 2 unités Mamad · reste
+שניות	seconds	secondes
+הצבה אוטומטית פועלת	Auto placement running	Placement automatique en cours
+גרעינים	units	unités
+ההצבה הושלמה	Placement complete	Placement terminé
+הסתר	Hide	Masquer
+אשר דירה	Approve apartment	Valider l'appartement
+דחה	Reject	Refuser
+אשר את כל הדירות	Approve all apartments	Valider tous les appartements
+ערוך ידנית	Edit manually	Modifier à la main
+סיכום ההצבה ואישור דירות	Placement summary and apartment approval	Récapitulatif du placement et validation des appartements
+אלמנטים:	Elements:	Éléments :
+1 יחידה = 10 מ״מ	1 unit = 10 mm	1 unité = 10 mm
+שכבה: OMER-DETAILS	Layer: OMER-DETAILS	Calque : OMER-DETAILS
+הפקת הקובץ	Export file	Génération du fichier
+גרסה 04 · מגדל הדר, קומה 3 · אושרו 2 דירות	Version 04 · Hadar Tower, Floor 3 · 2 apartments approved	Version 04 · Tour Hadar, étage 3 · 2 appartements validés
+פרטי ממ״ד · התקן עומר	Mamad details · Omer device	Détails Mamad · dispositif Omer
+רשימת סימונים	Legend	Légende
+פורמט הפלט	Output format	Format de sortie
+הקובץ הופק ונשמר בגרסה 05	File exported and saved as version 05	Fichier généré et enregistré en version 05
+ספריית אלמנטים · קטלוג עומר	Element library · Omer catalog	Bibliothèque d'éléments · catalogue Omer
+התקן עומר · תכנון ממ״ד	Omer device · Mamad design	Dispositif Omer · conception Mamad
+התחברות למערכת	Log in to the system	Connexion au système
+תכנון אוטומטי של פרטי ממ״ד על גבי שרטוט האדריכל, בהתאם להנחיות התקן והנחיות פיקוד העורף.	Automatic design of Mamad details on the architect's drawing, following the standard and the Home Front Command rules.	Conception automatique des détails du Mamad sur le plan de l'architecte, selon la norme et les règles du Commandement du front intérieur.
+זכור אותי	Remember me	Se souvenir de moi
+שכחתי סיסמה	Forgot password	Mot de passe oublié
+כניסה	Log in	Se connecter
+אין לך חשבון?	No account yet?	Pas encore de compte ?
+שרטוט אוטומטי · PDF / DWG	Automatic drawing · PDF / DWG	Plan automatique · PDF / DWG
+מהעלאת שרטוט האדריכל ועד קובץ ממ״ד מוכן להגשה — בלחיצה אחת.	From the architect's drawing to a Mamad file ready for submission, in one click.	Du plan de l'architecte au fichier Mamad prêt pour le dépôt, en un clic.
+זיהוי גרעיני ממ״ד בשרטוט והצבת כל הפרטים אוטומטית	Detects Mamad units in the drawing and places every detail automatically	Détecte les unités Mamad sur le plan et place tous les détails automatiquement
+אוורור 4״, מעברי מיזוג 8״, ספרינקלר, מעבר כבילה	4" ventilation, 8" AC passages, sprinkler, cable passage	Ventilation 4", passages de climatisation 8", sprinkler, passage de câbles
+ייצוא DWG ו‑PDF עם טבלת פרטים ורשימת סימונים	DWG and PDF export with detail table and legend	Export DWG et PDF avec tableau des détails et légende
+מערכת תכנון פרטי ממ״ד — התקן עומר המקורי	Mamad detail design system · the original Omer device	Système de conception des détails Mamad · le dispositif Omer d'origine
+חדש כאן?	New here?	Nouveau ici ?
+פתיחת חשבון	Create account	Créer un compte
+חבילת תכנון	Design plan	Offre de conception
+המחירים להמחשה בלבד וטרם הוגדרו. ניתן לשדרג או להוריד חבילה בכל עת.	Prices are for illustration only and not set yet. You can change plans at any time.	Les prix sont indicatifs et pas encore fixés. Vous pouvez changer d'offre à tout moment.
+בדיקה ואישור לפני הפקה	Review and approval before export	Contrôle et validation avant génération
+מגדל הדר · קומה 3 · 2 גרעיני ממ״ד	Hadar Tower · Floor 3 · 2 Mamad units	Tour Hadar · Étage 3 · 2 unités Mamad
+חזרה לשרטוט	Back to drawing	Retour au plan
+אשר והפק קובץ	Approve and export	Valider et générer
+בדיקות	Checks	Contrôles
+11 עברו	11 passed	11 réussis
+2 אזהרות	2 warnings	2 avertissements
+1 חוסמת	1 blocking	1 bloquant
+תצוגה מקדימה	Preview	Aperçu
+הגדרות תקן והעדפות ברירת מחדל	Standard settings and default preferences	Paramètres de norme et préférences par défaut
+פרטי המשרד	Firm details	Détails du cabinet
+פעילות	Activity	Activité
+סוג הבנייה	Construction type	Type de construction
+בחירה מרובה	Multiple choice	Choix multiple
+סוג פרויקט	Project type	Type de projet
+תחום עיסוק	Field of activity	Domaine d'activité
+איש קשר מטפל	Handling contact	Contact référent
+פרטי תשלום	Payment details	Informations de paiement
+חבילת הניסיון אינה דורשת פרטי תשלום.	The trial plan needs no payment details.	L'offre d'essai ne demande aucune information de paiement.
+מספר טלפון לבקשת התשלום	Phone number for the payment request	Numéro de téléphone pour la demande de paiement
+סיכום הזמנה	Order summary	Récapitulatif de commande
+מחיר חודשי	Monthly price	Prix mensuel
+מע״מ	VAT	TVA
+סה״כ לתשלום	Total due	Total à payer
+מספר הזמנה	Order number	Numéro de commande
+חבילה	Plan	Offre
+לפתיחת פרויקט	Open a project	Ouvrir un projet
+חזרה	Back	Retour
+מערכת תכנון ממ״ד · התקן עומר	Mamad Planning System · Omer Device	Système de conception Mamad · dispositif Omer
+מלא	Full	Complet
+מקוצר · ניסיון	Short · trial	Abrégé · essai
+שלב	Step	Étape
+מתוך	of	sur
+הפרויקט	Project	Projet
+יזם	Developer	Promoteur
+אנשי קשר	Contacts	Contacts
++ הוסף איש קשר	+ Add contact	+ Ajouter un contact
+סוג הפרויקט	Project type	Type de projet
+העלאת תוכנית מיגון מאושרת · PDF או DWG	Upload an approved protection plan · PDF or DWG	Déposer un plan de protection approuvé · PDF ou DWG
+תוכנית-מיגון-מאושרת.pdf	approved-protection-plan.pdf	plan-protection-approuve.pdf
+הסר	Remove	Retirer
+מיקום	Location	Emplacement
+סימון בכוכבית (★) בתוכנית	Marked with a star (★) on the plan	Marqué d'une étoile (★) sur le plan
+לפי התקן של התקן עומר ·	Per the Omer device standard ·	Selon la norme du dispositif Omer ·
+עריכה	Edit	Modifier
+השאלון נשלח	Questionnaire sent	Questionnaire envoyé
+הפרויקט נפתח והשרטוט מוכן להצבה	Project created and drawing ready for placement	Projet créé, plan prêt pour le placement
+פתח את השרטוט	Open the drawing	Ouvrir le plan
+גרור לכאן שרטוט אדריכלי או בחר קובץ	Drag an architectural drawing here or choose a file	Glissez un plan d'architecte ici ou choisissez un fichier
+DWG בלבד · קנה מידה 1:100 או 1:50 · עד 80MB	DWG only · scale 1:100 or 1:50 · up to 80MB	DWG uniquement · échelle 1:100 ou 1:50 · 80 Mo max.
+שגיאת שרת	Server error	Erreur serveur
+אין חיבור לשרת	No connection to the server	Pas de connexion au serveur
+דירה	Apartment	Appartement

@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from './Layout.jsx';
 import { CAT, AUTO_PLAN, STEPS, meta } from './catalog.js';
 import { api } from '../services/api.js';
+import { t } from './i18n.js';
 
 const SCREENS = ['login','signup','plans','wizard','canvas','review','export','library','billing','settings'];
 const screenFromHash = () => { const s = location.hash.replace(/^#\/?/, ''); return SCREENS.includes(s) ? s : null; };
@@ -21,7 +22,7 @@ export default class OmerApp extends React.Component {
   state = {
     screen:'login', vBrand:'a', vDraw:'a', vAuto:'a',
     suStep:1, suBuild:['מגורים'], suPType:'חדש', suField:'אדריכלות', classOpen:false, pay:'card', plan:2, paid:false,
-    f:{projName:'מגדל הדר, בניין ב׳', projAddr:'רחוב הדר 12, בני ברק'}, touched:{}, ecN:1,
+    f:{projName:t('מגדל הדר, בניין ב׳'), projAddr:t('רחוב הדר 12, בני ברק')}, touched:{}, ecN:1,
     q:{exec:'יש', sup:'אין', ptype:'חדש', space:'ממ״ד (דירתי)', addon:'לא', approved:'לא', tech:'לא', techLoc:'גג', techOpen:'פתוחה', hvac:'מיני מרכזי + מפוצל', split:'כן', vrfStar:true},
     approvedFile:false, submitted:false, savedAt:'',
     wizMode:'full', wizStep:1,

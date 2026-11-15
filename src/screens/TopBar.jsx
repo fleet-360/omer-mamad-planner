@@ -3,6 +3,7 @@
 // Values and handlers come from `v` (see src/app/OmerApp.jsx -> renderVals).
 import { Fragment } from 'react';
 import { sx, tx } from '../ui/dom.jsx';
+import { LANGS, getLang, setLang } from '../app/i18n.js';
 
 export default function TopBar({ v }) {
   return (
@@ -32,7 +33,16 @@ export default function TopBar({ v }) {
             </div>
           </>
         ) : null}
+        <div style={sx("display:flex;border:1px solid #3A3934;border-radius:3px;overflow:hidden;font-size:11px")}>
+          {LANGS.map((l) => (
+            <button key={l} onClick={() => setLang(l)} style={sx(l === getLang() ? LANG_ON : LANG_OFF)}>{LANG_LABEL[l]}</button>
+          ))}
+        </div>
       </div>
     </>
   );
 }
+
+const LANG_LABEL = { he: 'עב', en: 'EN', fr: 'FR' };
+const LANG_ON = "padding:4px 8px;border:0;background:#4C6EF5;color:#fff;cursor:pointer";
+const LANG_OFF = "padding:4px 8px;border:0;background:transparent;color:#8C8A82;cursor:pointer";
