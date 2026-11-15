@@ -429,7 +429,10 @@ export default class OmerApp extends React.Component {
 
     const legend = CAT.map(c => ({num:c.num, name:c.name, count:counts[c.t] || 0, dotStyle:dot(c.color, 20, 10)}));
     const previewDots = S.placed.map(p => ({cx:p.x, cy:p.y, color:meta(p.t).color}));
-    const sheetDots = S.placed.map(p => ({cx:30 + p.x*0.7, cy:30 + p.y*0.75, color:meta(p.t).color}));
+    // The export sheet draws each Mamad at a different scale than the building around it, so map every
+    // element relative to its Mamad: plan boxes 60/760,80 (180×180) -> sheet boxes 50/580,60 (130×130).
+    const sheetDots = S.placed.map(p => { const k = 130/180, right = p.x >= 500;
+      return {cx:(right ? 580 : 50) + (p.x - (right ? 760 : 60))*k, cy:60 + (p.y - 80)*k, color:meta(p.t).color}; });
 
     return {
       navItems, variantSwitch:vShow, variantLabel:vLabel,
