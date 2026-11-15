@@ -20,7 +20,8 @@ export default function Export({ v }) {
               <div style={sx("border:1px solid #DEDCD5;background:#fff;padding:14px;display:flex;flex-direction:column;gap:10px")}>
                 <div style={sx("border:1.5px solid #1A1A17;padding:10px")}>
                   {" "}
-                  <svg viewBox="0 0 1000 560" style={sx("width:100%;display:block")}>
+                  {/* direction:ltr: the sheet uses fixed coordinates; under the RTL page, textAnchor="end" would flip to the left edge */}
+                  <svg viewBox="0 0 1000 560" style={sx("width:100%;display:block;direction:ltr")}>
                     <g stroke="#1A1A17" fill="none">
                       <rect x="30" y="30" width="700" height="480" strokeWidth="6" />
                       <line x1="380" y1="30" x2="380" y2="510" strokeWidth="6" />
