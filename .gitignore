@@ -8,3 +8,7 @@ uploads/
 *.log
 .DS_Store
 Thumbs.db
+
+# OREN engine: generated outputs are annotated client plans, never commit
+engine/out/
+__pycache__/

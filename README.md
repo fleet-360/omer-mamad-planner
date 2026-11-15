@@ -43,7 +43,19 @@ server/
   app.js          אפליקציית Express (משותפת ל‑index.js המקומי ול‑api/index.js של Vercel)
 api/index.js      נקודת הכניסה של Vercel
 db/schema.sql     טבלאות, מריצים פעם אחת ב‑Neon
+engine/           אב-טיפוס מנוע OREN (Python): קורא תוכנית PDF, מוצא את הסימונים של אורן ומציב עומר
 ```
+
+## מנוע OREN (אב-טיפוס)
+
+```bash
+cd engine
+pip install -r requirements.txt
+python -X utf8 test_engine.py                       # בדיקה עצמית, מדפיס ok
+python -X utf8 engine.py <תיקיית תוכניות> out        # OREN_*.pdf + comparaison.pdf + rapport.md
+```
+
+עדיין לא מחובר ל‑`POST /api/exports`. בחירת פינת הייחוס האוטומטית לא אמינה, ולכן ב‑MVP המשתמש מסמן אותה בקליק (ראו פרויקט התקן עומר ב‑Notion).
 
 ## חיבור סליקה
 
