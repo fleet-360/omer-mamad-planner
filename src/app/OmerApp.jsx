@@ -1,7 +1,7 @@
 // הלוגיקה של הממשק — הועברה מהעיצוב כמו שהיא, ומחוברת לשכבת ה-API (src/services/api.js).
 import React from 'react';
 import Layout from './Layout.jsx';
-import { CAT, AUTO_PLAN, STEPS, meta } from './catalog.js';
+import { CAT, AUTO_PLAN, MAMADS, STEPS, meta } from './catalog.js';
 import { api } from '../services/api.js';
 import { t } from './i18n.js';
 
@@ -418,21 +418,20 @@ export default class OmerApp extends React.Component {
       };
     });
 
-    const scanZones = [{x:760,y:80},{x:60,y:80}].map(z => ({
-      style:'position:absolute;left:'+(z.x/1000*100)+'%;top:'+(z.y/640*100)+'%;width:18%;height:28.1%;border:1.5px solid '+acc+';background:rgba(76,110,245,.07)'
+    const pct = z => 'left:'+(z.x/10)+'%;top:'+(z.y/6.4)+'%';
+    const scanZones = [MAMADS.A, MAMADS.B].map(z => ({
+      style:'position:absolute;'+pct(z)+';width:'+(z.w/10)+'%;height:'+(z.h/6.4)+'%;border:1.5px solid '+acc+';background:rgba(76,110,245,.07)'
     }));
     const aptBadges = S.autoPhase === 'result' ? ['A','B'].map(a => ({
       text:aptName(a) + ' · ' + stLabel[S.apt[a]],
-      style:'position:absolute;left:'+(a === 'A' ? 76 : 6)+'%;top:'+((a === 'A' ? 44 : 44))+'px;transform:translateY(-100%);background:#fff;border:1px solid '+stColor[S.apt[a]]+';padding:4px 9px;font-size:11.5px;display:flex;align-items:center;gap:6px;white-space:nowrap',
+      style:'position:absolute;'+pct(MAMADS[a])+';margin-top:-6px;transform:translateY(-100%);background:#fff;border:1px solid '+stColor[S.apt[a]]+';padding:4px 9px;font-size:11.5px;display:flex;align-items:center;gap:6px;white-space:nowrap',
       dotStyle:'width:7px;height:7px;border-radius:50%;background:'+stColor[S.apt[a]]
     })) : [];
 
     const legend = CAT.map(c => ({num:c.num, name:c.name, count:counts[c.t] || 0, dotStyle:dot(c.color, 20, 10)}));
     const previewDots = S.placed.map(p => ({cx:p.x, cy:p.y, color:meta(p.t).color}));
-    // The export sheet draws each Mamad at a different scale than the building around it, so map every
-    // element relative to its Mamad: plan boxes 60/760,80 (180×180) -> sheet boxes 50/580,60 (130×130).
-    const sheetDots = S.placed.map(p => { const k = 130/180, right = p.x >= 500;
-      return {cx:(right ? 580 : 50) + (p.x - (right ? 760 : 60))*k, cy:60 + (p.y - 80)*k, color:meta(p.t).color}; });
+    // The export sheet shows the same plan image at 0.7 scale, offset to (30,46): see Export.jsx.
+    const sheetDots = S.placed.map(p => ({cx:30 + p.x*0.7, cy:46 + p.y*0.7, color:meta(p.t).color}));
 
     return {
       navItems, variantSwitch:vShow, variantLabel:vLabel,

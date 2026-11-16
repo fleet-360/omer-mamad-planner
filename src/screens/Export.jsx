@@ -22,18 +22,9 @@ export default function Export({ v }) {
                   {" "}
                   {/* direction:ltr: the sheet uses fixed coordinates; under the RTL page, textAnchor="end" would flip to the left edge */}
                   <svg viewBox="0 0 1000 560" style={sx("width:100%;display:block;direction:ltr")}>
-                    <g stroke="#1A1A17" fill="none">
-                      <rect x="30" y="30" width="700" height="480" strokeWidth="6" />
-                      <line x1="380" y1="30" x2="380" y2="510" strokeWidth="6" />
-                      <rect x="580" y="60" width="130" height="130" strokeWidth="8" />
-                      <rect x="50" y="60" width="130" height="130" strokeWidth="8" />
-                    </g>
-                    <g stroke="#4A4943" strokeWidth="2.5" fill="none">
-                      <line x1="380" y1="280" x2="580" y2="280" />
-                      <line x1="580" y1="280" x2="580" y2="510" />
-                      <line x1="180" y1="280" x2="380" y2="280" />
-                      <line x1="180" y1="280" x2="180" y2="510" />
-                    </g>
+                    {/* the plan at 0.7 scale (700×448), centred in the 30..510 drawing area */}
+                    <image href="/plans/b2-floor5.jpg" x="30" y="46" width="700" height="448" preserveAspectRatio="none" />
+                    <rect x="30" y="30" width="700" height="480" fill="none" stroke="#1A1A17" strokeWidth="1.5" />
                     {(v.sheetDots || []).map((d, i0) => (
                       <Fragment key={i0}>
                         <circle cx={d.cx} cy={d.cy} r="11" fill={d.color} />

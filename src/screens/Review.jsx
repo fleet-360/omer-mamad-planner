@@ -76,18 +76,7 @@ export default function Review({ v }) {
                 <div style={sx("border:1px solid #EDEBE4;background:#fff;padding:8px")}>
                   {" "}
                   <svg viewBox="0 0 1000 640" style={sx("width:100%;display:block")}>
-                    <g stroke="#1A1A17" fill="none">
-                      <rect x="40" y="40" width="920" height="560" strokeWidth="7" />
-                      <line x1="500" y1="40" x2="500" y2="600" strokeWidth="7" />
-                      <rect x="760" y="80" width="180" height="180" strokeWidth="9" />
-                      <rect x="60" y="80" width="180" height="180" strokeWidth="9" />
-                    </g>
-                    <g stroke="#4A4943" strokeWidth="3" fill="none">
-                      <line x1="500" y1="340" x2="760" y2="340" />
-                      <line x1="760" y1="340" x2="760" y2="600" />
-                      <line x1="240" y1="340" x2="500" y2="340" />
-                      <line x1="240" y1="340" x2="240" y2="600" />
-                    </g>
+                    <image href="/plans/b2-floor5.jpg" x="0" y="0" width="1000" height="640" preserveAspectRatio="none" />
                     {(v.previewDots || []).map((d, i1) => (
                       <Fragment key={i1}>
                         <circle cx={d.cx} cy={d.cy} r="15" fill={d.color} />

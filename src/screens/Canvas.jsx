@@ -58,59 +58,8 @@ export default function Canvas({ v }) {
             <div ref={v.sheetRef} style={sx(v.sheetStyle)}>
               {" "}
               <svg viewBox="0 0 1000 640" style={sx("position:absolute;inset:0;width:100%;height:100%;display:block")}>
-                <rect x="0" y="0" width="1000" height="640" fill="#fff" />
-                <g stroke="#1A1A17" fill="none">
-                  <rect x="40" y="40" width="920" height="560" strokeWidth="7" />
-                  <line x1="500" y1="40" x2="500" y2="600" strokeWidth="7" />
-                  <rect x="760" y="80" width="180" height="180" strokeWidth="9" />
-                  <rect x="60" y="80" width="180" height="180" strokeWidth="9" />
-                </g>
-                <g stroke="#4A4943" strokeWidth="3" fill="none">
-                  <line x1="500" y1="340" x2="760" y2="340" />
-                  <line x1="760" y1="340" x2="760" y2="600" />
-                  <line x1="240" y1="340" x2="500" y2="340" />
-                  <line x1="240" y1="340" x2="240" y2="600" />
-                  <line x1="600" y1="440" x2="760" y2="440" />
-                  <line x1="240" y1="440" x2="400" y2="440" />
-                </g>
-                <g stroke="#1A1A17" strokeWidth="2.5" fill="none">
-                  <path d="M866 260 L866 205 A55 55 0 0 1 921 260" />
-                  <path d="M79 260 L79 205 A55 55 0 0 0 134 260" />
-                </g>
-                <g stroke="#fff" strokeWidth="11">
-                  <line x1="866" y1="260" x2="921" y2="260" />
-                  <line x1="79" y1="260" x2="134" y2="260" />
-                </g>
-                <g stroke="#1A1A17" strokeWidth="2">
-                  <line x1="866" y1="260" x2="921" y2="260" />
-                  <line x1="79" y1="260" x2="134" y2="260" />
-                </g>
-                <g stroke="#1A1A17" strokeWidth="2" fill="#fff">
-                  <rect x="934" y="140" width="12" height="70" />
-                  <line x1="940" y1="140" x2="940" y2="210" />
-                  <rect x="54" y="140" width="12" height="70" />
-                  <line x1="60" y1="140" x2="60" y2="210" />
-                </g>
-                <g fontFamily="Rubik" fontSize="13" fill="#8C8A82" textAnchor="middle">
-                  <text x="850" y="180" fontSize="15" fill="#4A4943" fontWeight="500">ממ״ד · דירה 3א</text>
-                  <text x="850" y="200" fontSize="11">300/300</text>
-                  <text x="150" y="180" fontSize="15" fill="#4A4943" fontWeight="500">ממ״ד · דירה 3ב</text>
-                  <text x="150" y="200" fontSize="11">300/300</text>
-                  <text x="630" y="200">סלון</text>
-                  <text x="350" y="200">סלון</text>
-                  <text x="630" y="500">חדר שינה</text>
-                  <text x="370" y="500">חדר שינה</text>
-                  <text x="860" y="440">מטבח</text>
-                  <text x="140" y="440">מטבח</text>
-                </g>
-                <g stroke="#C9C6BC" strokeWidth="1" strokeDasharray="5 4">
-                  <line x1="760" y1="630" x2="940" y2="630" />
-                  <line x1="60" y1="630" x2="240" y2="630" />
-                </g>
-                <g fontFamily="IBM Plex Mono" fontSize="11" fill="#8C8A82" textAnchor="middle">
-                  <text x="850" y="626">300</text>
-                  <text x="150" y="626">300</text>
-                </g>
+                {/* Real plan: B2, floor 5 (lot 115), 1:50, cropped to the two lower apartments. See OmerApp.jsx PLAN. */}
+                <image href="/plans/b2-floor5.jpg" x="0" y="0" width="1000" height="640" preserveAspectRatio="none" />
               </svg>
               {" "}
               {(v.markers || []).map((m, i1) => (
