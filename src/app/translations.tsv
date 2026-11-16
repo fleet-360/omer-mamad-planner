@@ -442,3 +442,28 @@ DWG בלבד · קנה מידה 1:100 או 1:50 · עד 80MB	DWG only · scale 1
 יכ	IC	IC
 התקן עומר	Omer device	Dispositif Omer
 פרויקט	Project	Projet
+סימני הסימון של אורן	Oren's markup signs	Les symboles de marquage d'Oren
+המקרא שאורן סקורניק משתמש בו כשהוא מסמן תוכניות. נקרא מהסימונים ב‑10 מתוך 12 התוכניות שאורנים שלחו.	The legend Oren Skurnik uses when he marks up plans. Read from his marks on 10 of the 12 plans Oranim sent.	La légende qu'Oren Skurnik utilise pour annoter les plans. Relevée sur 10 des 12 plans envoyés par Oranim.
+תוכניות	Plans	Plans
+מיקום התקן עומר	Omer device location	Emplacement du dispositif Omer
+מלבן מלא על הקיר, במקום ההתקן	Filled rectangle on the wall, where the device goes	Rectangle plein sur le mur, à l'emplacement du dispositif
+בתוכניות 2026: מסגרת סגולה על מילוי כחול	On 2026 plans: purple border on blue fill	Sur les plans de 2026 : bordure violette sur fond bleu
+מסגרת כחולה: הצבה מעל הדלת	Blue border: placed above the door	Bordure bleue : posé au-dessus de la porte
+ציר צינור עומר	Omer pipe axis	Axe du tube Omer
+קו אדום שחוצה את הקיר במרכז הצינור	Red line across the wall at the pipe centre	Trait rouge qui traverse le mur au centre du tube
+ממנו נמדד המרחק לפינה	The distance to the corner is measured from it	C'est de là qu'on mesure la distance à l'angle
+חץ הפניה	Pointer arrow	Flèche de renvoi
+חץ אדום אל ציר הצינור	Red arrow to the pipe axis	Flèche rouge vers l'axe du tube
+הנחיית ביצוע	Execution note	Consigne d'exécution
+תיבת טקסט אדום ליד הממ״ד	Red text box next to the Mamad	Encadré de texte rouge à côté du Mamad
+מיקום: מרחק מפינת קיר ניצב, חלון או דלת, או מול מרכז קיר בלוק ניצב	Position: distance from a perpendicular wall, window or door corner, or facing the centre of a perpendicular block wall	Position : distance depuis l'angle d'un mur perpendiculaire, d'une fenêtre ou d'une porte, ou face au centre d'un mur en blocs perpendiculaire
+H = מינוס 38 ס״מ מתחתית התקרה למרכז הצינור (לפעמים 40 או 50)	H = minus 38 cm from the ceiling underside to the pipe centre (sometimes 40 or 50)	H = moins 38 cm sous le plafond jusqu'au centre du tube (parfois 40 ou 50)
+הולכת צנרת גז: בחריצת קיר בלוק, אל הנמכת תקרה או בסינר גבס	Gas piping: in a block-wall chase, to a lowered ceiling or in a plasterboard casing	Conduite de gaz : en saignée dans le mur en blocs, vers un faux plafond ou dans un coffrage en plâtre
+צינור 4״ שחרור אוויר	4" air release pipe	Tube 4" d'évacuation d'air
+קו סגול שחוצה את הקיר	Purple line across the wall	Trait violet qui traverse le mur
+ציר בגובה 1.90 מ׳ לפחות מהריצוף	Axis at least 1.90 m above the floor	Axe à 1,90 m minimum du sol
+מעבר כבילה	Cable passage	Passage de câbles
+קו ירוק שחוצה את הקיר, עם הגובה	Green line across the wall, with its height	Trait vert qui traverse le mur, avec sa hauteur
+לדוגמה H = 2.25, או מינוס 25 ס״מ במקום מיזוג	For example H = 2.25, or minus 25 cm in place of AC	Par exemple H = 2,25, ou moins 25 cm à la place de la clim
+זהה לממ״ד	Same as Mamad	Identique au Mamad
+חץ ירוק אל ממ״ד שמסומן כמו הממ״ד הסמוך	Green arrow to a Mamad marked the same as the one next to it	Flèche verte vers un Mamad marqué comme celui d'à côté

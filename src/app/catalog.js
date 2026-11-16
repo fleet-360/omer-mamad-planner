@@ -23,3 +23,14 @@ export const AUTO_PLAN = [
 ];
 export const STEPS = ['קריאת שכבות השרטוט','זיהוי גרעיני ממ״ד','מיקום צינורות אוורור 4״','התקן עומר ומעברי מיזוג 8״','ספרינקלר ומעבר כבילה','בדיקת תקן והנחיות פיקוד העורף'];
 export const meta = t => CAT.find(c => c.t === t);
+// Oren Skurnik's markup signs, read from the PDF annotations on the plans Oranim sent (Oct 2026):
+// 10 of the 12 plans carry his marks. Colors are his, so they stay fixed in every theme.
+export const OREN_SIGNS = [
+  {k:'unit', name:'מיקום התקן עומר', colors:['#E52237','#38E6FF'], plans:9, draw:'מלבן מלא על הקיר, במקום ההתקן', specs:['בתוכניות 2026: מסגרת סגולה על מילוי כחול','מסגרת כחולה: הצבה מעל הדלת']},
+  {k:'axis', name:'ציר צינור עומר', colors:['#E52237'], plans:10, draw:'קו אדום שחוצה את הקיר במרכז הצינור', specs:['ממנו נמדד המרחק לפינה']},
+  {k:'arrow', name:'חץ הפניה', colors:['#E52237'], plans:9, draw:'חץ אדום אל ציר הצינור'},
+  {k:'note', name:'הנחיית ביצוע', colors:['#E52237'], plans:10, draw:'תיבת טקסט אדום ליד הממ״ד', specs:['מיקום: מרחק מפינת קיר ניצב, חלון או דלת, או מול מרכז קיר בלוק ניצב','H = מינוס 38 ס״מ מתחתית התקרה למרכז הצינור (לפעמים 40 או 50)','הולכת צנרת גז: בחריצת קיר בלוק, אל הנמכת תקרה או בסינר גבס']},
+  {k:'vent', name:'צינור 4״ שחרור אוויר', colors:['#BF38C4','#9642FC'], plans:1, draw:'קו סגול שחוצה את הקיר', specs:['ציר בגובה 1.90 מ׳ לפחות מהריצוף']},
+  {k:'cable', name:'מעבר כבילה', colors:['#058A1C'], plans:1, draw:'קו ירוק שחוצה את הקיר, עם הגובה', specs:['לדוגמה H = 2.25, או מינוס 25 ס״מ במקום מיזוג']},
+  {k:'same', name:'זהה לממ״ד', colors:['#058A1C'], plans:1, draw:'חץ ירוק אל ממ״ד שמסומן כמו הממ״ד הסמוך'}
+];

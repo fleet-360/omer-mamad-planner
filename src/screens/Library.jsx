@@ -4,6 +4,24 @@
 import { Fragment, useState } from 'react';
 import { recolor } from '../app/theme.js';
 import { sx, tx } from '../ui/dom.jsx';
+import { OREN_SIGNS } from '../app/catalog.js';
+
+// Oren's signs drawn on a wall corner in plan view, in his own colors (not themed).
+function SignSketch({ k, colors }) {
+  const c = colors[0], head = (x, y, d) => <polyline points={`${x - 10 * d},${y - 7} ${x},${y} ${x - 10 * d},${y + 7}`} fill="none" stroke={c} strokeWidth="2.5" />;
+  return (
+    <svg viewBox="0 0 240 120" style={sx("width:100%;display:block")}>
+      <rect x="0" y="0" width="240" height="120" fill="#fff" />
+      <path d="M20 40H220V62H42V112H20Z" fill="#E9E7E1" stroke="#1A1A17" strokeWidth="1.5" />
+      {k === 'unit' ? <><rect x="104" y="54" width="48" height="14" fill={colors[1]} fillOpacity=".56" stroke={c} strokeWidth="2" /><line x1="128" y1="28" x2="128" y2="96" stroke={c} strokeWidth="2" /></> : null}
+      {['axis', 'vent', 'cable'].includes(k) ? <line x1="128" y1="26" x2="128" y2="98" stroke={c} strokeWidth="3" /> : null}
+      {k === 'cable' ? <text x="136" y="100" fill={c} fontSize="12" style={{ direction: 'ltr' }}>H=2.25</text> : null}
+      {k === 'arrow' ? <><line x1="128" y1="26" x2="128" y2="98" stroke={c} strokeWidth="1.5" strokeOpacity=".5" /><line x1="196" y1="88" x2="133" y2="88" stroke={c} strokeWidth="2.5" />{head(133, 88, -1)}</> : null}
+      {k === 'note' ? <><rect x="76" y="70" width="140" height="42" fill="#fff" stroke={c} strokeWidth="1.5" /><text x="88" y="87" fill={c} fontSize="11" style={{ direction: 'ltr' }}>1.10 m · H = -38</text><line x1="88" y1="99" x2="196" y2="99" stroke={c} strokeOpacity=".45" strokeWidth="3" /></> : null}
+      {k === 'same' ? <><rect x="152" y="72" width="60" height="36" fill="none" stroke="#8C8A82" strokeDasharray="4 3" /><line x1="66" y1="90" x2="144" y2="90" stroke={c} strokeWidth="3" />{head(144, 90, 1)}</> : null}
+    </svg>
+  );
+}
 
 // Added outside the design: the downloads explanation, the "add element" button, card and form.
 const SWATCHES = ['#2D94CF', '#2F6F4E', '#0B7285', '#6741D9', '#C2255C', '#E8590C', '#495057', '#B08900'];
@@ -148,7 +166,26 @@ export default function Library({ v }) {
               <span style={sx("font-size:12.5px;color:#6B7BC9;max-width:240px;text-align:center;line-height:1.5")}>מוצר נוסף או מעבר מאושר אחר. יופיע מיד בסרגל השרטוט.</span>
             </button>
           </div>
-          {" "}
+          <div style={sx("margin:40px 0 16px")}>
+            <h2 style={sx("font-size:18px;font-weight:600;margin:0 0 4px")}>סימני הסימון של אורן</h2>
+            <div style={sx("font-size:13px;color:#6B6A63;line-height:1.55;max-width:720px")}>המקרא שאורן סקורניק משתמש בו כשהוא מסמן תוכניות. נקרא מהסימונים ב‑10 מתוך 12 התוכניות שאורנים שלחו.</div>
+          </div>
+          <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px")}>
+            {OREN_SIGNS.map((g) => (
+              <div key={g.k} style={sx("background:#fff;border:1px solid #DEDCD5;display:flex;flex-direction:column")}>
+                <div style={sx("display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EDEBE4")}>
+                  <div style={sx("display:flex;gap:4px;flex:none")}>{g.colors.map((c) => <span key={c} style={{ width: 14, height: 14, borderRadius: '50%', background: c }} />)}</div>
+                  <div style={sx("flex:1;min-width:0;font-size:13.5px;font-weight:600;line-height:1.3")}>{g.name}</div>
+                  <div style={sx("font-size:11.5px;color:#8C8A82;white-space:nowrap")}>תוכניות <span style={sx("font-variant-numeric:tabular-nums;color:#4A4943;font-weight:600")}>{g.plans}</span></div>
+                </div>
+                <div style={sx("background:#FBFAF8;padding:14px;border-bottom:1px solid #EDEBE4")}><SignSketch k={g.k} colors={g.colors} /></div>
+                <div style={sx("padding:13px 16px;display:flex;flex-direction:column;gap:6px;flex:1;font-size:12px;color:#4A4943;line-height:1.5")}>
+                  <div style={sx("color:#1A1A17;font-weight:500")}>{g.draw}</div>
+                  {(g.specs || []).map((s) => <div key={s} style={sx("display:flex;gap:7px")}><span style={sx("color:#C9C6BC;flex:none")}>·</span><span>{s}</span></div>)}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
