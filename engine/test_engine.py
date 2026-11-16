@@ -61,3 +61,10 @@ if __name__ == "__main__":
     test_parse_note()
     test_pipeline()
     print("ok")
+
+
+def test_visual_hebrew():
+    from pdf2dwg import visual
+    assert visual("H = מינוס 38 ס\"מ") == "מ\"ס 38 סונימ = H"
+    assert visual("(2.52) תקרה") == "הרקת (2.52)"
+    assert visual("PLAN 1:50") == "PLAN 1:50"
