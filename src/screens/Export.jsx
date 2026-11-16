@@ -104,18 +104,15 @@ export default function Export({ v }) {
                   {tx(v.exportLabel)}
                 </button>
                 {" "}
+                {v.exportError ? <div role="alert" style={sx("margin-top:12px;font-size:12.5px;color:#C2255C")}>{v.exportError}</div> : null}
                 {v.exportDone ? (
                   <>
                     {" "}
                     <div style={sx("margin-top:14px;border:1px solid #EDEBE4;background:#FBFAF8;padding:12px 14px;animation:fadeUp .3s ease both")}>
                       {" "}
-                      <div style={sx("font-size:12.5px;font-weight:500;color:#2F6F4E;margin-bottom:5px")}>הקובץ הופק ונשמר בגרסה 05</div>
+                      <div style={sx("font-size:12.5px;font-weight:500;color:#2F6F4E;margin-bottom:5px")}>הקובץ הופק והורד</div>
                       {" "}
-                      <div style={sx("font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6B6A63;line-height:1.7")}>
-                        HADAR-B-F03-OMER-R05.dwg
-                        <br />
-                        HADAR-B-F03-OMER-R05.pdf
-                      </div>
+                      <div style={sx("font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6B6A63;line-height:1.7")}>{v.exportName}</div>
                       {" "}
                     </div>
                     {" "}

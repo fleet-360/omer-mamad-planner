@@ -68,3 +68,19 @@ def test_visual_hebrew():
     assert visual("H = מינוס 38 ס\"מ") == "מ\"ס 38 סונימ = H"
     assert visual("(2.52) תקרה") == "הרקת (2.52)"
     assert visual("PLAN 1:50") == "PLAN 1:50"
+
+
+def test_dxf_export():
+    import importlib.util, pathlib
+    spec = importlib.util.spec_from_file_location("dxf", pathlib.Path(__file__).parent.parent / "api" / "dxf.py")
+    dxf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(dxf)
+    assert dxf._sizes("2×Ø200") == (2, [20.0]) and dxf._sizes("340/240") == (1, [34.0, 24.0])
+    out = dxf.build({"elements": [{"code": "OM-UNIT", "color": "#2D94CF", "shape": "rect", "dim": "340/240", "x": 794, "y": 226}]})
+    assert b"OMER-UNIT" in out
+    for bad in ({"elements": "x"}, {"elements": [{"x": "1e400", "y": 1}]}):
+        try:
+            dxf.build(bad)
+            assert False, bad
+        except ValueError:
+            pass

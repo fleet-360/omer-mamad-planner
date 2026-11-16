@@ -8,6 +8,7 @@ import { t } from './i18n.js';
 const SCREENS = ['login','signup','plans','projects','wizard','canvas','review','export','library','billing','settings'];
 const screenFromHash = () => { const s = location.hash.replace(/^#\/?/, ''); return SCREENS.includes(s) ? s : null; };
 export const MAX_DRAWING_BYTES = 80 * 1024 * 1024;
+const EXPORT_NAME = 'B2-F05-OMER.dxf'; // the demo plan: B2, floor 5, lot 115
 const fmtSize = b => b >= 1048576 ? (b/1048576).toFixed(1)+'MB' : Math.max(1, Math.round(b/1024))+'KB';
 const validateDrawing = file => {
   if(!/\.dwg$/i.test(file.name)) return 'ניתן להעלות קובץ DWG בלבד';
@@ -164,8 +165,17 @@ export default class OmerApp extends React.Component {
   }
 
   async doExportFiles(){
-    this.setState({exportDone:true});
-    try { await api.exports.create({drawingId:this.state.upload.id, formats:['dwg','pdf']}); } catch(e) { console.warn('[export]', e.message); }
+    this.setState({exporting:true, exportError:''});
+    try {
+      const elements = this.state.placed.map(p => { const c = meta(p.t) || {}; return {code:c.code, color:c.color, shape:c.shape, dim:c.dim, x:p.x, y:p.y}; });
+      const blob = await api.exports.dxf({elements});
+      const a = Object.assign(document.createElement('a'), {href:URL.createObjectURL(blob), download:EXPORT_NAME});
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      this.setState({exporting:false, exportDone:true});
+    } catch(e) {
+      this.setState({exporting:false, exportError:e.message || 'ההפקה נכשלה'});
+    }
   }
 
   toSvg(cx, cy){
@@ -625,11 +635,10 @@ export default class OmerApp extends React.Component {
 
       // export
       formats:[
-        {name:'DWG · שכבות מלאות', desc:'שכבת OMER-DETAILS מעל שרטוט האדריכל', size:'5.1MB', checked:true},
-        {name:'PDF · A2 להגשה', desc:'כולל כותרת שרטוט ורשימת סימונים', size:'1.8MB', checked:true}
+        {name:'DXF · שכבות OMER', desc:'נפתח ב‑AutoCAD בס״מ, מעל שרטוט האדריכל. לשמירה כ‑DWG: Save As', size:'~5MB', checked:true}
       ].map(f => ({...f, style:'display:flex;align-items:center;gap:11px;padding:11px 12px;border:1px solid '+(f.checked ? '#C9D0F7' : '#EDEBE4')+';background:'+(f.checked ? '#F7F8FF' : '#fff')+';margin-bottom:8px;cursor:pointer'})),
-      exportLabel:S.exportDone ? 'הופק · הפק שוב' : 'הפק והורד',
-      exportDone:S.exportDone, doExport:() => this.doExportFiles(),
+      exportLabel:S.exporting ? 'מפיק…' : S.exportDone ? 'הופק · הפק שוב' : 'הפק והורד',
+      exportDone:S.exportDone, exportError:S.exportError, exportName:EXPORT_NAME, doExport:() => S.exporting || this.doExportFiles(),
 
       // library
       catalog:CAT.map(c => ({...c, num:c.num, dotStyle:dot(c.color, 26, 12), round:c.shape === 'round', rect:c.shape === 'rect'})),

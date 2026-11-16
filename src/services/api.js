@@ -80,6 +80,12 @@ export const api = {
   },
   exports: {
     create: (body) => request('/exports', { method: 'POST', body }),
+    /** The placed elements drawn on the plan, as a DXF file (Blob). */
+    dxf: async (body) => {
+      const res = await fetch(BASE + '/dxf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (!res.ok) throw new Error((await res.json().catch(() => null))?.error || `שגיאת שרת (${res.status})`);
+      return res.blob();
+    },
   },
   billing: {
     invoices: () => request('/billing/invoices'),

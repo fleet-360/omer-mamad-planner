@@ -467,3 +467,8 @@ H = מינוס 38 ס״מ מתחתית התקרה למרכז הצינור (לפע
 לדוגמה H = 2.25, או מינוס 25 ס״מ במקום מיזוג	For example H = 2.25, or minus 25 cm in place of AC	Par exemple H = 2,25, ou moins 25 cm à la place de la clim
 זהה לממ״ד	Same as Mamad	Identique au Mamad
 חץ ירוק אל ממ״ד שמסומן כמו הממ״ד הסמוך	Green arrow to a Mamad marked the same as the one next to it	Flèche verte vers un Mamad marqué comme celui d'à côté
+DXF · שכבות OMER	DXF · OMER layers	DXF · calques OMER
+נפתח ב‑AutoCAD בס״מ, מעל שרטוט האדריכל. לשמירה כ‑DWG: Save As	Opens in AutoCAD in cm, over the architect's drawing. To get a DWG: Save As	S'ouvre dans AutoCAD en cm, sur le plan de l'architecte. Pour un DWG : Enregistrer sous
+מפיק…	Generating…	Génération…
+הקובץ הופק והורד	File generated and downloaded	Fichier généré et téléchargé
+ההפקה נכשלה	Generation failed	La génération a échoué

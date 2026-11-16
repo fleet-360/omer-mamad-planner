@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import { spawn } from 'node:child_process';
 import path from 'node:path';
 import express from 'express';
 import { config } from './config.js';
@@ -22,6 +23,24 @@ async function nextOrderId() {
   const ymd = String(d.getFullYear()).slice(2) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
   const n = (await db.countIdPrefix('orders', `OM-${ymd}-`)) + 1;
   return `OM-${ymd}-${String(n).padStart(4, '0')}`;
+}
+
+// ------------------------------------------------------------------ dxf (local dev)
+// On Vercel /api/dxf is the Python function api/dxf.py; locally the same script runs through stdin/stdout.
+if (!process.env.VERCEL) {
+  router.post('/dxf', (req, res) => {
+    const py = spawn(process.env.PYTHON || 'python', ['api/dxf.py']);
+    const out = [], err = [];
+    py.stdout.on('data', (b) => out.push(b));
+    py.stderr.on('data', (b) => err.push(b));
+    py.on('error', (e) => res.headersSent || bad(res, 'python not available: ' + e.message, 500));
+    py.on('close', (code) => {
+      if (res.headersSent) return;
+      if (code) return bad(res, Buffer.concat(err).toString().trim().split('\n').pop());
+      res.set({ 'Content-Type': 'application/dxf', 'Content-Disposition': 'attachment; filename="OMER-PLAN.dxf"' }).send(Buffer.concat(out));
+    });
+    py.stdin.end(JSON.stringify(req.body || {}));
+  });
 }
 
 // ------------------------------------------------------------------ health

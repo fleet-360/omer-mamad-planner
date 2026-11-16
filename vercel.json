@@ -1,5 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+  "rewrites": [
+    {
+      "source": "/api/((?!dxf$).*)",
+      "destination": "/api"
+    }
+  ],
+  "functions": {
+    "api/dxf.py": {
+      "includeFiles": "api/_data/**"
+    }
+  }
 }
