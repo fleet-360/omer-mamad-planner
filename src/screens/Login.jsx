@@ -1,6 +1,7 @@
 // התחברות
 // Generated from the approved design (omer-mamad-planner) and kept 1:1 with it.
 // Values and handlers come from `v` (see src/app/OmerApp.jsx -> renderVals).
+import { recolor } from '../app/theme.js';
 import { sx } from '../ui/dom.jsx';
 
 export default function Login({ v }) {
@@ -64,7 +65,7 @@ export default function Login({ v }) {
                   <g fill="none" stroke="#1A1A17" strokeWidth="5">
                     <rect x="90" y="90" width="150" height="130" />
                   </g>
-                  <g stroke="#4C6EF5" strokeWidth="2" fill="#fff">
+                  <g stroke={recolor('#4C6EF5')} strokeWidth="2" fill="#fff">
                     <circle cx="90" cy="120" r="7" />
                     <circle cx="90" cy="195" r="7" />
                     <circle cx="205" cy="220" r="7" />

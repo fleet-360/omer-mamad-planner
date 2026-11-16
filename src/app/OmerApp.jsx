@@ -5,7 +5,7 @@ import { CAT, AUTO_PLAN, MAMADS, STEPS, meta } from './catalog.js';
 import { api } from '../services/api.js';
 import { t } from './i18n.js';
 
-const SCREENS = ['login','signup','plans','wizard','canvas','review','export','library','billing','settings'];
+const SCREENS = ['login','signup','plans','projects','wizard','canvas','review','export','library','billing','settings'];
 const screenFromHash = () => { const s = location.hash.replace(/^#\/?/, ''); return SCREENS.includes(s) ? s : null; };
 export const MAX_DRAWING_BYTES = 80 * 1024 * 1024;
 const fmtSize = b => b >= 1048576 ? (b/1048576).toFixed(1)+'MB' : Math.max(1, Math.round(b/1024))+'KB';
@@ -86,6 +86,13 @@ export default class OmerApp extends React.Component {
   }
 
   set(k,v){ this.setState({[k]:v}); }
+  // Library "add element": the new entry joins the catalog for this session, so it also shows in the drawing palette.
+  // ponytail: in-memory only (lost on reload); persist through the API once the catalog lives server-side.
+  addElement({name, code, dim, shape, color, specs}){
+    const n = String(CAT.length + 1);
+    CAT.push({t:'custom-'+Date.now(), num:n, short:code || 'EL-'+n, name, code:code || 'OM-EL'+n, color, shape, dim:dim || '—', specs});
+    this.forceUpdate();
+  }
   pick(k,v){ this.setState(s => ({choice:{...s.choice, [k]:v}})); }
   go(screen){
     this.setState({screen, hover:null});
@@ -96,7 +103,7 @@ export default class OmerApp extends React.Component {
   async doLogin(){
     const S = this.state;
     try { await api.auth.login({email:S.loginEmail, password:S.loginPass}); } catch(e) { console.warn('[login]', e.message); }
-    this.go('wizard');
+    this.go('projects');
   }
 
   /** Signup step 3: open the account, then charge through the payment provider. */
@@ -441,7 +448,12 @@ export default class OmerApp extends React.Component {
       isLogin:S.screen === 'login', isSignup:S.screen === 'signup', isPlans:S.screen === 'plans',
       isWizard:S.screen === 'wizard', isCanvas:S.screen === 'canvas', isReview:S.screen === 'review',
       isExport:S.screen === 'export', isLibrary:S.screen === 'library',
-      isBilling:S.screen === 'billing', isSettings:S.screen === 'settings',
+      isBilling:S.screen === 'billing', isSettings:S.screen === 'settings', isProjects:S.screen === 'projects',
+      // System shell (sidebar, header, projects list)
+      screen:S.screen, go:k => this.go(k),
+      project:{name:S.f.projName, addr:S.f.projAddr, drawing:'קומה 3', mamads:2,
+        status:S.apt.A === 'approved' && S.apt.B === 'approved' ? 'אושר' : S.autoPhase === 'result' ? 'לאישור' : 'בתכנון',
+        statusColor:S.apt.A === 'approved' && S.apt.B === 'approved' ? '#2F6F4E' : S.autoPhase === 'result' ? '#E8590C' : '#8C8A82'},
       brandA:S.vBrand === 'a', brandB:S.vBrand === 'b',
       goSignup:e => { if(e) e.preventDefault(); this.go('signup'); },
       goWizard:() => this.go('wizard'), goPlans:() => this.go('plans'),
@@ -621,6 +633,7 @@ export default class OmerApp extends React.Component {
 
       // library
       catalog:CAT.map(c => ({...c, num:c.num, dotStyle:dot(c.color, 26, 12), round:c.shape === 'round', rect:c.shape === 'rect'})),
+      addElement:el => this.addElement(el),
 
       // billing
       invoices:(S.invoices || [

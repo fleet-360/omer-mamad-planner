@@ -2,6 +2,7 @@
 // Generated from the approved design (omer-mamad-planner) and kept 1:1 with it.
 // Values and handlers come from `v` (see src/app/OmerApp.jsx -> renderVals).
 import { Fragment } from 'react';
+import { recolor } from '../app/theme.js';
 import { sx, tx } from '../ui/dom.jsx';
 
 export default function Export({ v }) {
@@ -27,7 +28,7 @@ export default function Export({ v }) {
                     <rect x="30" y="30" width="700" height="480" fill="none" stroke="#1A1A17" strokeWidth="1.5" />
                     {(v.sheetDots || []).map((d, i0) => (
                       <Fragment key={i0}>
-                        <circle cx={d.cx} cy={d.cy} r="11" fill={d.color} />
+                        <circle cx={d.cx} cy={d.cy} r="11" fill={recolor(d.color)} />
                       </Fragment>
                     ))}
                     <g stroke="#1A1A17" fill="none" strokeWidth="1.5">
@@ -45,7 +46,7 @@ export default function Export({ v }) {
                       <text x="930" y="129" textAnchor="end">V4-IN</text>
                       <circle cx="948" cy="154" r="9" fill="#0B7285" />
                       <text x="930" y="159" textAnchor="end">V4-OUT</text>
-                      <circle cx="948" cy="184" r="9" fill="#4C6EF5" />
+                      <circle cx="948" cy="184" r="9" fill="#2D94CF" />
                       <text x="930" y="189" textAnchor="end">OMER</text>
                       <circle cx="948" cy="214" r="9" fill="#6741D9" />
                       <text x="930" y="219" textAnchor="end">AC-8×2</text>

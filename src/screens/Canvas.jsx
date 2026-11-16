@@ -2,6 +2,7 @@
 // Generated from the approved design (omer-mamad-planner) and kept 1:1 with it.
 // Values and handlers come from `v` (see src/app/OmerApp.jsx -> renderVals).
 import { Fragment } from 'react';
+import { recolor } from '../app/theme.js';
 import { sx, tx } from '../ui/dom.jsx';
 import { WheelDiv } from '../ui/WheelDiv.jsx';
 
@@ -11,7 +12,6 @@ export default function Canvas({ v }) {
       <div style={sx("flex:1;display:flex;flex-direction:column;height:calc(100vh - 52px);overflow:hidden;position:relative")}>
         <div style={sx("height:46px;flex:none;background:#fff;border-bottom:1px solid #DEDCD5;display:flex;align-items:center;gap:14px;padding:0 16px;overflow-x:auto")}>
           <div style={sx("display:flex;align-items:center;gap:9px;min-width:0")}>
-            <span style={sx("font-size:13.5px;font-weight:500;white-space:nowrap")}>מגדל הדר · קומה 3</span>
             <span style={sx("font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8C8A82;white-space:nowrap")}>1:50 · DWG</span>
           </div>
           <div style={sx("width:1px;height:22px;background:#EDEBE4")} />
@@ -155,20 +155,20 @@ export default function Canvas({ v }) {
                       </g>
                       {v.hv.round ? (
                         <>
-                          <g fill="#fff" stroke={v.hv.color} strokeWidth="2.5">
+                          <g fill="#fff" stroke={recolor(v.hv.color)} strokeWidth="2.5">
                             <circle cx="120" cy="65" r="26" />
                           </g>
-                          <g fill="none" stroke={v.hv.color} strokeWidth="1.2">
+                          <g fill="none" stroke={recolor(v.hv.color)} strokeWidth="1.2">
                             <circle cx="120" cy="65" r="20" />
                           </g>
                         </>
                       ) : null}
                       {v.hv.rect ? (
                         <>
-                          <g fill="#fff" stroke={v.hv.color} strokeWidth="2.5">
+                          <g fill="#fff" stroke={recolor(v.hv.color)} strokeWidth="2.5">
                             <rect x="94" y="42" width="52" height="46" />
                           </g>
-                          <g fill="none" stroke={v.hv.color} strokeWidth="1.2">
+                          <g fill="none" stroke={recolor(v.hv.color)} strokeWidth="1.2">
                             <rect x="100" y="48" width="40" height="34" />
                           </g>
                         </>

@@ -296,8 +296,8 @@ PDF · A2 להגשה	PDF · A2 for submission	PDF · A2 pour le dépôt
 מגדל הדר · קומה 3	Hadar Tower · Floor 3	Tour Hadar · Étage 3
 התאם למסך	Fit to screen	Ajuster à l'écran
 בטל הצבה	Undo placement	Annuler le placement
-תכנון ממ״דים אוטומטי	Automatic Mamad design	Conception automatique des Mamad
-לבדיקה ואישור	To review and approval	Vers le contrôle et la validation
+תכנון ממ״דים אוטומטי	Auto placement	Placement automatique
+לבדיקה ואישור	To review	Vers le contrôle
 ממ״ד · דירה 3א	Mamad · Apartment 3A	Mamad · Appartement 3A
 ממ״ד · דירה 3ב	Mamad · Apartment 3B	Mamad · Appartement 3B
 סלון	Living room	Salon
@@ -398,3 +398,47 @@ DWG בלבד · קנה מידה 1:100 או 1:50 · עד 80MB	DWG only · scale 1
 שגיאת שרת	Server error	Erreur serveur
 אין חיבור לשרת	No connection to the server	Pas de connexion au serveur
 דירה	Apartment	Appartement
+הוספת אלמנט	Add element	Ajouter un élément
+קבצים להורדה	Downloads	Fichiers à télécharger
+כל אלמנט זמין כבלוק DWG להכנסה לשרטוט האדריכל ב‑AutoCAD, וכדף מוצר PDF עם הממדים וכללי ההצבה. בהדגמה הזו הקבצים עדיין לא מחוברים.	Each element comes as a DWG block to insert into the architect's drawing in AutoCAD, and as a PDF product sheet with its dimensions and placement rules. In this demo the files are not connected yet.	Chaque élément existe en bloc DWG à insérer dans le plan de l'architecte sous AutoCAD, et en fiche produit PDF avec ses cotes et ses règles de pose. Dans cette démo, les fichiers ne sont pas encore branchés.
+בלוק AutoCAD להכנסה לשרטוט	AutoCAD block to insert into the drawing	Bloc AutoCAD à insérer dans le plan
+דף מוצר: ממדים וכללי הצבה	Product sheet: dimensions and placement rules	Fiche produit : cotes et règles de pose
+הקובץ יהיה זמין בגרסה הבאה.	The file will be available in the next version.	Le fichier sera disponible dans la prochaine version.
+הוספת אלמנט לקטלוג	Add an element to the catalog	Ajouter un élément au catalogue
+מוצר נוסף או מעבר מאושר אחר. יופיע מיד בסרגל השרטוט.	Another product or approved passage. It shows up right away in the drawing bar.	Un autre produit ou passage agréé. Il apparaît aussitôt dans la barre du plan.
+אלמנט חדש	New element	Nouvel élément
+שם האלמנט	Element name	Nom de l'élément
+לדוגמה: התקן עומר SA-3	e.g. Omer SA-3 device	Ex. : dispositif Omer SA-3
+קוד	Code	Code
+מידות	Dimensions	Cotes
+צורה	Shape	Forme
+עגול	Round	Rond
+מלבני	Rectangular	Rectangulaire
+צבע	Color	Couleur
+כללי הצבה	Placement rules	Règles de pose
+שורה לכל כלל	One rule per line	Une règle par ligne
+הוסף לקטלוג	Add to catalog	Ajouter au catalogue
+ביטול	Cancel	Annuler
+פרויקטים	Projects	Projets
+עבודה	Work	Travail
+קטלוג	Catalog	Catalogue
+חשבון	Account	Compte
+שרטוט	Drawing	Plan
+התנתקות	Log out	Se déconnecter
+אדריכל	Architect	Architecte
+ישראל כהן	Israel Cohen	Israël Cohen
+פרויקט חדש	New project	Nouveau projet
+קומה 3	Floor 3	Étage 3
+ממ״דים	Mamads	Mamad
+סטטוס	Status	Statut
+בתכנון	In design	En conception
+פרויקט אחד	1 project	1 projet
+הדגמה	Demo	Démo
+כלי הדגמה	Demo tools	Outils de démo
+שפה	Language	Langue
+סגנון	Style	Style
+מסכים לפני כניסה	Before login	Avant connexion
+תכנון ממ״ד	Mamad design	Conception Mamad
+יכ	IC	IC
+התקן עומר	Omer device	Dispositif Omer
+פרויקט	Project	Projet

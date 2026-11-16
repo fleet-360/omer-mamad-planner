@@ -2,6 +2,7 @@
 // Generated from the approved design (omer-mamad-planner) and kept 1:1 with it.
 // Values and handlers come from `v` (see src/app/OmerApp.jsx -> renderVals).
 import { Fragment } from 'react';
+import { recolor } from '../app/theme.js';
 import { sx, tx } from '../ui/dom.jsx';
 
 export default function Review({ v }) {
@@ -79,7 +80,7 @@ export default function Review({ v }) {
                     <image href="/plans/b2-floor5.jpg" x="0" y="0" width="1000" height="640" preserveAspectRatio="none" />
                     {(v.previewDots || []).map((d, i1) => (
                       <Fragment key={i1}>
-                        <circle cx={d.cx} cy={d.cy} r="15" fill={d.color} />
+                        <circle cx={d.cx} cy={d.cy} r="15" fill={recolor(d.color)} />
                       </Fragment>
                     ))}
                   </svg>

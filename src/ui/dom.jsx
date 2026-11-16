@@ -1,15 +1,18 @@
 // Small rendering helpers that keep the screens identical to the design.
 
+import { getTheme, recolor } from '../app/theme.js';
+
 const cache = new Map();
 
-/** Parse an inline CSS string ("a:b;c:d") into a React style object (cached). */
+/** Parse an inline CSS string ("a:b;c:d") into a React style object (cached per theme). */
 export function sx(css) {
   if (!css) return undefined;
   if (typeof css === 'object') return css;
-  let o = cache.get(css);
+  const ck = getTheme() + '|' + css;
+  let o = cache.get(ck);
   if (o) return o;
   o = {};
-  for (const decl of String(css).split(';')) {
+  for (const decl of recolor(String(css)).split(';')) {
     const i = decl.indexOf(':');
     if (i < 0) continue;
     const prop = decl.slice(0, i).trim();
@@ -17,7 +20,7 @@ export function sx(css) {
     const key = prop.startsWith('--') ? prop : prop.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
     o[key] = decl.slice(i + 1).trim();
   }
-  cache.set(css, o);
+  cache.set(ck, o);
   return o;
 }
 
