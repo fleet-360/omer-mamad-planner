@@ -1,0 +1,7 @@
+{
+  "_comment": "Mamad found around each Oren box, checked by eye on the check sheet (2026-11-16). false = wrong or missing room.",
+  "00.0": true, "00.1": true, "01.0": true, "01.1": true, "02.0": false,
+  "03.0": false, "03.1": false, "03.2": false, "03.3": false, "04.0": true,
+  "06.0": true, "07.0": false, "08.0": false, "08.1": false, "08.2": false,
+  "11.0": true, "11.1": true, "11.2": true, "11.3": true
+}

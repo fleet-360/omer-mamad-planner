@@ -84,3 +84,15 @@ def test_dxf_export():
             assert False, bad
         except ValueError:
             pass
+
+
+def test_bench_geometry():
+    import numpy as np
+    import bench as b
+    m = np.zeros((40, 40), bool)
+    m[5, 2:38] = True      # a long wall run survives
+    m[20:23, 10:13] = True  # a small blob (text, symbol) does not
+    out = b._long_runs(m, 20)
+    assert out[5].sum() == 36 and not out[20:23, 10:13].any()
+    room = fitz.Rect(0, 0, 100, 80)
+    assert b.truth(room, (fitz.Point(30, 2), True), 1) == ("top", 30, 2)
