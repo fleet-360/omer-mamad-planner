@@ -83,7 +83,7 @@ export default class OmerApp extends React.Component {
     window.removeEventListener('pointermove', this._mv);
     window.removeEventListener('pointerup', this._up);
     window.removeEventListener('hashchange', this._hash);
-    clearInterval(this._t); clearInterval(this._c);
+    clearInterval(this._t); clearInterval(this._c); clearTimeout(this._nx);
   }
 
   set(k,v){ this.setState({[k]:v}); }
@@ -225,6 +225,14 @@ export default class OmerApp extends React.Component {
       }
     }, 830);
     this._c = setInterval(() => this.setState(s => ({autoLeft:Math.max(0, +(s.autoLeft - 1).toFixed(0))})), 1000);
+  }
+  /** Approve/reject apartments; once all are approved, move on to review (short pause so the "approved" state is seen). */
+  setApt(patch){
+    this.setState(s => ({apt:{...s.apt, ...patch}}), () => {
+      clearTimeout(this._nx);
+      if(Object.values(this.state.apt).every(v => v === 'approved'))
+        this._nx = setTimeout(() => { if(this.state.screen === 'canvas') this.go('review'); }, 700);
+    });
   }
   retryApt(a){
     this.setState(s => ({apt:{...s.apt, [a]:'running'}, placed:s.placed.filter(p => p.apt !== a)}));
@@ -429,8 +437,8 @@ export default class OmerApp extends React.Component {
         pending:st === 'pending', done:st === 'approved' || st === 'rejected',
         doneLabel:st === 'approved' ? 'הדירה אושרה' : 'הדירה נדחתה — נדרש תכנון מחדש',
         doneStyle:'height:32px;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:500;background:'+(st === 'approved' ? '#EEF6F1' : '#FCEFF3')+';color:'+(st === 'approved' ? '#2F6F4E' : '#C2255C'),
-        approve:() => this.setState(s => ({apt:{...s.apt, [a]:'approved'}})),
-        reject:() => this.setState(s => ({apt:{...s.apt, [a]:'rejected'}})),
+        approve:() => this.setApt({[a]:'approved'}),
+        reject:() => this.setApt({[a]:'rejected'}),
         retry:() => this.retryApt(a)
       };
     });
@@ -618,7 +626,7 @@ export default class OmerApp extends React.Component {
       startAuto:() => this.startAuto(),
       resultPanelStyle:'position:absolute;top:14px;left:'+(S.vDraw === 'a' ? '296px' : '14px')+';z-index:40;width:326px;max-height:calc(100% - 28px);overflow:auto;background:#fff;border:1px solid #DEDCD5;box-shadow:0 16px 44px rgba(26,26,23,.16);animation:fadeUp .3s ease both',
       resultSummary:'12 אלמנטים ב‑2 גרעיני ממ״ד · 2 אזהרות · אשר כל דירה בנפרד',
-      resultApts, approveAll:() => this.setState({apt:{A:'approved',B:'approved'}}),
+      resultApts, approveAll:() => this.setApt({A:'approved', B:'approved'}),
       dismissResult:() => this.setState({autoPhase:'idle'}),
 
       // review
