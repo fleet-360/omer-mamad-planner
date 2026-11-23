@@ -515,7 +515,7 @@ export default class OmerApp extends React.Component {
       setLoginEmail:e => this.set('loginEmail', e.target.value), setLoginPass:e => this.set('loginPass', e.target.value),
       doLogin:() => this.doLogin(),
       suPrev:() => S.suStep === 1 ? this.go('login') : this.set('suStep', S.suStep - 1),
-      fieldOpts:['אדריכלות','תכנון','ביצוע','אינסטלציה','מיזוג אוויר','קונסטרוקציה','יועץ','אחר'].map(o => ({label:o, style:opt(S.suField === o), go:() => this.set('suField', o)})),
+      fieldOpts:['אדריכלות','תכנון','הנדסה','ביצוע','אינסטלציה','מיזוג אוויר','קונסטרוקציה','יועץ','אחר'].map(o => ({label:o, style:opt(S.suField === o), go:() => this.set('suField', o)})),
       ptypeOpts:['חדש','תמ״א','התחדשות עירונית'].map(o => ({label:o, style:opt(S.suPType === o), go:() => this.set('suPType', o)})),
       classOpen:S.classOpen, classEmpty:!S.suBuild.length,
       toggleClass:() => this.set('classOpen', !S.classOpen),
