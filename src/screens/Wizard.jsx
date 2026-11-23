@@ -236,6 +236,16 @@ export default function Wizard({ v }) {
                 {" "}
                 <div style={sx("background:#fff;border:1px solid #DEDCD5;padding:26px;display:flex;flex-direction:column;gap:24px")}>
                   <div>
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>סוג הבנייה</div>
+                    <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
+                      {(v.qBuild || []).map((o, k) => (
+                        <Fragment key={k}>
+                          <button onClick={o.go} style={sx(o.style)}>{tx(o.label)}</button>
+                        </Fragment>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
                     {" "}
                     <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>סוג הפרויקט</div>
                     {" "}
@@ -265,7 +275,7 @@ export default function Wizard({ v }) {
                   </div>
                   <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
                     {" "}
-                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>סוג מרחב מוגן</div>
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>סוג מרחב מוגן <span style={sx("font-weight:400;color:#8C8A82")}>· לפי סוג הבנייה</span></div>
                     {" "}
                     <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
                       {(v.qSpace || []).map((o, i11) => (

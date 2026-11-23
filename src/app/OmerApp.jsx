@@ -9,6 +9,14 @@ const SCREENS = ['login','signup','plans','projects','wizard','canvas','review',
 const screenFromHash = () => { const s = location.hash.replace(/^#\/?/, ''); return SCREENS.includes(s) ? s : null; };
 export const MAX_DRAWING_BYTES = 80 * 1024 * 1024;
 const EXPORT_NAME = 'B2-F05-OMER.dxf'; // the demo plan: B2, floor 5, lot 115
+// Oren, 31:53: the shelter type follows from the building type (residential: apartment or floor
+// shelter; public / commercial: institutional). Pending his confirmation of this mapping.
+const SPACES = {'מגורים':['ממ״ד (דירתי)','ממ״ק (קומתי)'], 'ציבורי':['ממ״מ (מוסדי)'], 'מסחרי':['ממ״מ (מוסדי)']};
+const projSpace = S => {
+  const build = SPACES[S.q.build] ? S.q.build : (S.suBuild || []).find(b => SPACES[b]) || 'מגורים';
+  const spaces = SPACES[build];
+  return {build, spaces, space:spaces.includes(S.q.space) ? S.q.space : spaces[0]};
+};
 const fmtSize = b => b >= 1048576 ? (b/1048576).toFixed(1)+'MB' : Math.max(1, Math.round(b/1024))+'KB';
 const validateDrawing = file => {
   if(!/\.dwg$/i.test(file.name)) return 'ניתן להעלות קובץ DWG בלבד';
@@ -144,7 +152,7 @@ export default class OmerApp extends React.Component {
     const S = this.state;
     this.setState({busy:true, sendError:''});
     try {
-      await api.projects.submit({mode:S.wizMode, fields:S.f, answers:S.q, contacts:S.ecN, approvedFile:S.approvedFile, drawingId:S.upload.id, drawingName:S.upload.name});
+      await api.projects.submit({mode:S.wizMode, fields:S.f, answers:{...S.q, build:projSpace(S).build, space:projSpace(S).space}, contacts:S.ecN, approvedFile:S.approvedFile, drawingId:S.upload.id, drawingName:S.upload.name});
       this.setState({submitted:true, busy:false});
       try { localStorage.removeItem('omer-draft-v1'); } catch(e) {}
     } catch(e) {
@@ -337,12 +345,13 @@ export default class OmerApp extends React.Component {
     const dash = v => (v && String(v).trim()) ? String(v) : '—';
     const rows = arr => arr.map(([label, value]) => ({label, value:dash(value)}));
     const F = S.f, Q = S.q;
+    const PS = projSpace(S);
     const SUM = {
       proj:rows([['שם הפרויקט',F.projName],['כתובת',F.projAddr],['שם יזם',F.devName],['איש קשר',F.devContact],['טלפון',F.devPhone],['מייל',F.devEmail]]),
       exec:Q.exec === 'אין' ? rows([['קבלן ביצוע','אין']]) : rows([['שם חברה',F.execCompany],['מנהל פרויקט',F.execPM],['מהנדס ביצוע',F.execEng],
         ...Array.from({length:S.ecN}, (_, i) => ['איש קשר '+(i+1), [F['ec'+i+'Name'],F['ec'+i+'Phone'],F['ec'+i+'Email']].filter(Boolean).join(' · ')])]),
       sup:Q.sup === 'אין' ? rows([['חברת פיקוח','אין']]) : rows([['שם',F.supName],['טלפון',F.supPhone],['מייל',F.supEmail]]),
-      char:rows([['סוג',Q.ptype],['מספר דירות',F.units],['שטח (מ״ר)',F.area],['משרדים (מ״ר)',F.offices],['תעשייה (מ״ר)',F.industry],['מספר קומות טיפוסיות',F.typFloors],['מספר ממ״דים בקומה',F.mamadsPerFloor],['סוג מרחב מוגן',Q.space],['תוספת ממ״ד למבנה קיים',Q.addon],['תוכניות מיגון מאושרות',Q.approved === 'כן' ? (S.approvedFile ? 'כן · קובץ צורף' : 'כן · לא צורף קובץ') : 'לא']]),
+      char:rows([['סוג הבנייה',PS.build],['סוג',Q.ptype],['מספר דירות',F.units],['שטח (מ״ר)',F.area],['משרדים (מ״ר)',F.offices],['תעשייה (מ״ר)',F.industry],['מספר קומות טיפוסיות',F.typFloors],['מספר ממ״דים בקומה',F.mamadsPerFloor],['סוג מרחב מוגן',PS.space],['תוספת ממ״ד למבנה קיים',Q.addon],['תוכניות מיגון מאושרות',Q.approved === 'כן' ? (S.approvedFile ? 'כן · קובץ צורף' : 'כן · לא צורף קובץ') : 'לא']]),
       hvac:rows([['שיטת מיזוג',Q.hvac],
         ...(isVrf ? [['יחידת VRF חיצונית',[F.vrfLoc, Q.vrfStar ? 'מסומנת ★' : ''].filter(Boolean).join(' · ')]] : []),
         ['מפוצל לכל החדרים',Q.split],
@@ -507,7 +516,7 @@ export default class OmerApp extends React.Component {
       doLogin:() => this.doLogin(),
       suPrev:() => S.suStep === 1 ? this.go('login') : this.set('suStep', S.suStep - 1),
       fieldOpts:['אדריכלות','תכנון','ביצוע','אינסטלציה','מיזוג אוויר','קונסטרוקציה','יועץ','אחר'].map(o => ({label:o, style:opt(S.suField === o), go:() => this.set('suField', o)})),
-      ptypeOpts:['חדש','תמ״א','התחדשות עירונית','תעשייתי'].map(o => ({label:o, style:opt(S.suPType === o), go:() => this.set('suPType', o)})),
+      ptypeOpts:['חדש','תמ״א','התחדשות עירונית'].map(o => ({label:o, style:opt(S.suPType === o), go:() => this.set('suPType', o)})),
       classOpen:S.classOpen, classEmpty:!S.suBuild.length,
       toggleClass:() => this.set('classOpen', !S.classOpen),
       classFieldStyle:'display:flex;align-items:center;gap:8px;min-height:40px;padding:6px 11px;border:1px solid '+(S.classOpen ? acc : '#DEDCD5')+';background:#FBFAF8;cursor:pointer',
@@ -575,7 +584,8 @@ export default class OmerApp extends React.Component {
       qExec:qOpts('exec',['יש','אין'],true), hasExec:Q.exec === 'יש',
       qSup:qOpts('sup',['יש','אין'],true), hasSup:Q.sup === 'יש',
       qPtype:qOpts('ptype',['חדש','תמ״א','התחדשות עירונית']),
-      qSpace:qOpts('space',['ממ״ד (דירתי)','ממ״ק (קומתי)','ממ״מ (מוסדי)']),
+      qBuild:Object.keys(SPACES).map(o => ({label:o, style:opt(PS.build === o), go:() => this.setState(s => ({q:{...s.q, build:o, space:SPACES[o].includes(s.q.space) ? s.q.space : SPACES[o][0]}}), () => this.saveDraft())})),
+      qSpace:PS.spaces.map(o => ({label:o, style:opt(PS.space === o), go:() => this.pickQ('space', o)})),
       qAddon:qOpts('addon',['כן','לא']), qApproved:qOpts('approved',['כן','לא']),
       approvedYes:Q.approved === 'כן', approvedFile:S.approvedFile, approvedNoFile:!S.approvedFile,
       pickApproved:() => this.setState({approvedFile:true}, () => this.saveDraft()),
