@@ -91,7 +91,7 @@ export default function Login({ v }) {
                     </div>
                     <div style={sx("display:flex;gap:9px;align-items:flex-start")}>
                       <span style={sx("color:#4C6EF5")}>—</span>
-                      אוורור 4״, מעברי מיזוג 8״, ספרינקלר, מעבר כבילה
+                      אוורור 4״, מעברי מיזוג 8״, ספרינקלר, מעבר כבילה, מעבר צנרת מזגן חרושתי (עומר מקורי)
                     </div>
                     <div style={sx("display:flex;gap:9px;align-items:flex-start")}>
                       <span style={sx("color:#4C6EF5")}>—</span>

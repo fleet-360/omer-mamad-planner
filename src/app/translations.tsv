@@ -338,7 +338,7 @@ PDF · A2 להגשה	PDF · A2 for submission	PDF · A2 pour le dépôt
 שרטוט אוטומטי · PDF / DWG	Automatic drawing · PDF / DWG	Plan automatique · PDF / DWG
 מהעלאת שרטוט האדריכל ועד קובץ ממ״ד מוכן להגשה — בלחיצה אחת.	From the architect's drawing to a Mamad file ready for submission, in one click.	Du plan de l'architecte au fichier Mamad prêt pour le dépôt, en un clic.
 זיהוי גרעיני ממ״ד בשרטוט והצבת כל הפרטים אוטומטית	Detects Mamad units in the drawing and places every detail automatically	Détecte les unités Mamad sur le plan et place tous les détails automatiquement
-אוורור 4״, מעברי מיזוג 8״, ספרינקלר, מעבר כבילה	4" ventilation, 8" AC passages, sprinkler, cable passage	Ventilation 4", passages de climatisation 8", sprinkler, passage de câbles
+אוורור 4״, מעברי מיזוג 8״, ספרינקלר, מעבר כבילה, מעבר צנרת מזגן חרושתי (עומר מקורי)	4" ventilation, 8" AC passages, sprinkler, cable passage, factory-made AC pipe sleeve (original Omer)	Ventilation 4", passages de climatisation 8", sprinkler, passage de câbles, passage préfabriqué de conduite de climatisation (Omer d'origine)
 ייצוא DWG ו‑PDF עם טבלת פרטים ורשימת סימונים	DWG and PDF export with detail table and legend	Export DWG et PDF avec tableau des détails et légende
 מערכת תכנון פרטי ממ״ד — התקן עומר המקורי	Mamad detail design system · the original Omer device	Système de conception des détails Mamad · le dispositif Omer d'origine
 חדש כאן?	New here?	Nouveau ici ?
@@ -490,3 +490,5 @@ DXF · שכבות OMER	DXF · OMER layers	DXF · calques OMER
 הנמכת תקרה חיצונית	Outside lowered ceiling	Faux plafond extérieur
 יחידת מיזוג	AC unit	Unité de climatisation
 יש להזין גובה	Enter a height	Indiquez une hauteur
+מעבר צנרת מזגן חרושתי	Factory-made AC pipe sleeve	Passage préfabriqué de conduite de climatisation
+עומר מקורי	original Omer	Omer d'origine
