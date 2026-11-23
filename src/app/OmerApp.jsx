@@ -307,7 +307,7 @@ export default class OmerApp extends React.Component {
       fields:[fld('ec'+i+'Name','שם'), fld('ec'+i+'Phone','טלפון','phone'), fld('ec'+i+'Email','מייל','email')]
     }));
     const fSup = [fld('supName','שם'), fld('supPhone','טלפון','phone'), fld('supEmail','מייל','email')];
-    const fCharNums = [fld('units','מספר דירות','num'), fld('area','שטח (מ״ר)','num'), fld('offices','משרדים (מ״ר)','num'), fld('industry','תעשייה (מ״ר)','num')];
+    const fCharNums = [fld('units','מספר דירות','num'), fld('area','שטח (מ״ר)','num'), fld('offices','משרדים (מ״ר)','num'), fld('industry','תעשייה (מ״ר)','num'), fld('typFloors','מספר קומות טיפוסיות','num'), fld('mamadsPerFloor','מספר ממ״דים בקומה','num')];
     const fHvacNums = [fld('ceilBottom','גובה תחתית תקרת בטון (ס״מ)','num','260'), fld('floorCeil','גובה פני ריצוף ותקרה (ס״מ)','num','12'), fld('bldgLoc','מיקום הבניין','text','עיר / שכונה / גוש וחלקה')];
     const fTechOther = [fld('techOther','מיקום הקומה הטכנית')];
     const fFeed = [fld('feed','מקור ההזנה לממ״ד','text','לדוגמה: יחידה פנימית במסדרון')];
@@ -336,7 +336,7 @@ export default class OmerApp extends React.Component {
       exec:Q.exec === 'אין' ? rows([['קבלן ביצוע','אין']]) : rows([['שם חברה',F.execCompany],['מנהל פרויקט',F.execPM],['מהנדס ביצוע',F.execEng],
         ...Array.from({length:S.ecN}, (_, i) => ['איש קשר '+(i+1), [F['ec'+i+'Name'],F['ec'+i+'Phone'],F['ec'+i+'Email']].filter(Boolean).join(' · ')])]),
       sup:Q.sup === 'אין' ? rows([['חברת פיקוח','אין']]) : rows([['שם',F.supName],['טלפון',F.supPhone],['מייל',F.supEmail]]),
-      char:rows([['סוג',Q.ptype],['מספר דירות',F.units],['שטח (מ״ר)',F.area],['משרדים (מ״ר)',F.offices],['תעשייה (מ״ר)',F.industry],['סוג מרחב מוגן',Q.space],['תוספת ממ״ד למבנה קיים',Q.addon],['תוכניות מיגון מאושרות',Q.approved === 'כן' ? (S.approvedFile ? 'כן · קובץ צורף' : 'כן · לא צורף קובץ') : 'לא']]),
+      char:rows([['סוג',Q.ptype],['מספר דירות',F.units],['שטח (מ״ר)',F.area],['משרדים (מ״ר)',F.offices],['תעשייה (מ״ר)',F.industry],['מספר קומות טיפוסיות',F.typFloors],['מספר ממ״דים בקומה',F.mamadsPerFloor],['סוג מרחב מוגן',Q.space],['תוספת ממ״ד למבנה קיים',Q.addon],['תוכניות מיגון מאושרות',Q.approved === 'כן' ? (S.approvedFile ? 'כן · קובץ צורף' : 'כן · לא צורף קובץ') : 'לא']]),
       hvac:rows([['תחתית תקרת בטון',F.ceilBottom && F.ceilBottom+' ס״מ'],['פני ריצוף ותקרה',F.floorCeil && F.floorCeil+' ס״מ'],['מיקום הבניין',F.bldgLoc],
         ['קומה טכנית',Q.tech === 'קיימת' ? [Q.techLoc === 'אחר' ? (F.techOther || 'אחר') : Q.techLoc, Q.techOpen].join(' · ') : 'לא'],
         ['שיטת מיזוג',Q.hvac],['מפוצל לכל החדרים',Q.split],['מקור הזנה לממ״ד',F.feed],
@@ -478,7 +478,7 @@ export default class OmerApp extends React.Component {
       goCanvas:() => this.go('canvas'), goReview:() => this.go('review'), goExport:() => this.go('export'),
 
       // signup
-      signupSteps:[['פרטי המשתמש','שם, דוא״ל, סיסמה'],['משרד ופעילות','סיווג ותחום עיסוק'],['תשלום','סליקה מאובטחת']].map(([label,hint],i) => ({
+      signupSteps:[['פרטי המשתמש','שם, דוא״ל, סיסמה'],['פעילות ומשרד','סיווג ותחום עיסוק'],['תשלום','סליקה מאובטחת']].map(([label,hint],i) => ({
         label, hint, num:S.suStep > i+1 || S.paid ? '✓' : String(i+1),
         style:'flex:1;display:flex;align-items:center;gap:10px;padding:14px 16px;'+(i ? 'border-right:1px solid #EDEBE4;' : '')+(S.suStep === i+1 && !S.paid ? 'background:#F7F8FF' : ''),
         numStyle:dot(S.suStep > i+1 || S.paid ? '#2F6F4E' : S.suStep === i+1 ? acc : '#DEDCD5', 24, 11)
@@ -496,8 +496,8 @@ export default class OmerApp extends React.Component {
       setLoginEmail:e => this.set('loginEmail', e.target.value), setLoginPass:e => this.set('loginPass', e.target.value),
       doLogin:() => this.doLogin(),
       suPrev:() => S.suStep === 1 ? this.go('login') : this.set('suStep', S.suStep - 1),
-      fieldOpts:['אדריכלות','תכנון','ביצוע','אינסטלציה','קונסטרוקציה','יועץ','אחר'].map(o => ({label:o, style:opt(S.suField === o), go:() => this.set('suField', o)})),
-      ptypeOpts:['חדש','תמ״א','רמ״ה','תעשייתי'].map(o => ({label:o, style:opt(S.suPType === o), go:() => this.set('suPType', o)})),
+      fieldOpts:['אדריכלות','תכנון','ביצוע','אינסטלציה','מיזוג אוויר','קונסטרוקציה','יועץ','אחר'].map(o => ({label:o, style:opt(S.suField === o), go:() => this.set('suField', o)})),
+      ptypeOpts:['חדש','תמ״א','התחדשות עירונית','תעשייתי'].map(o => ({label:o, style:opt(S.suPType === o), go:() => this.set('suPType', o)})),
       classOpen:S.classOpen, classEmpty:!S.suBuild.length,
       toggleClass:() => this.set('classOpen', !S.classOpen),
       classFieldStyle:'display:flex;align-items:center;gap:8px;min-height:40px;padding:6px 11px;border:1px solid '+(S.classOpen ? acc : '#DEDCD5')+';background:#FBFAF8;cursor:pointer',
@@ -564,7 +564,7 @@ export default class OmerApp extends React.Component {
       addContact:() => this.setState(s => ({ecN:s.ecN + 1}), () => this.saveDraft()),
       qExec:qOpts('exec',['יש','אין'],true), hasExec:Q.exec === 'יש',
       qSup:qOpts('sup',['יש','אין'],true), hasSup:Q.sup === 'יש',
-      qPtype:qOpts('ptype',['חדש','תמ״א','רמ״ה']),
+      qPtype:qOpts('ptype',['חדש','תמ״א','התחדשות עירונית']),
       qSpace:qOpts('space',['ממ״ד (דירתי)','ממ״ק (קומתי)','ממ״מ (מוסדי)']),
       qAddon:qOpts('addon',['כן','לא']), qApproved:qOpts('approved',['כן','לא']),
       approvedYes:Q.approved === 'כן', approvedFile:S.approvedFile, approvedNoFile:!S.approvedFile,

@@ -58,25 +58,7 @@ export default function Signup({ v }) {
             {v.su2 ? (
               <>
                 {" "}
-                <div style={sx("font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;color:#8C8A82;margin-bottom:18px")}>פרטי המשרד</div>
-                {" "}
-                <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 20px;margin-bottom:24px")}>
-                  {(v.fSuOffice || []).map((x, i2) => (
-                    <Fragment key={i2}>
-                      <div style={sx("min-width:0")}>
-                        <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
-                        <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
-                        {x.hasErr ? (
-                          <>
-                            <div style={sx("font-size:11.5px;color:#C2255C;margin-top:5px")}>{tx(x.err)}</div>
-                          </>
-                        ) : null}
-                      </div>
-                    </Fragment>
-                  ))}
-                </div>
-                {" "}
-                <div style={sx("display:flex;flex-direction:column;gap:20px;margin-bottom:24px;border-top:1px solid #EDEBE4;padding-top:20px")}>
+                <div style={sx("display:flex;flex-direction:column;gap:20px;margin-bottom:24px")}>
                   <div style={sx("font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;color:#8C8A82")}>פעילות</div>
                   <div style={sx("max-width:520px")}>
                     {" "}
@@ -180,6 +162,24 @@ export default function Signup({ v }) {
                     ) : null}
                     {" "}
                   </div>
+                </div>
+                {" "}
+                <div style={sx("font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;color:#8C8A82;margin-bottom:18px;border-top:1px solid #EDEBE4;padding-top:20px")}>פרטי המשרד</div>
+                {" "}
+                <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 20px;margin-bottom:24px")}>
+                  {(v.fSuOffice || []).map((x, i2) => (
+                    <Fragment key={i2}>
+                      <div style={sx("min-width:0")}>
+                        <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
+                        <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
+                        {x.hasErr ? (
+                          <>
+                            <div style={sx("font-size:11.5px;color:#C2255C;margin-top:5px")}>{tx(x.err)}</div>
+                          </>
+                        ) : null}
+                      </div>
+                    </Fragment>
+                  ))}
                 </div>
                 {" "}
                 <div style={sx("border-top:1px solid #EDEBE4;padding-top:20px")}>
