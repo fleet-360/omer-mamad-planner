@@ -24,7 +24,7 @@ export default class OmerApp extends React.Component {
     screen:'login', vBrand:'a', vDraw:'a', vAuto:'a',
     suStep:1, suBuild:['מגורים'], suPType:'חדש', suField:'אדריכלות', classOpen:false, pay:'card', plan:2, paid:false,
     f:{projName:t('מגדל הדר, בניין ב׳'), projAddr:t('רחוב הדר 12, בני ברק')}, touched:{}, ecN:1,
-    q:{exec:'יש', sup:'אין', ptype:'חדש', space:'ממ״ד (דירתי)', addon:'לא', approved:'לא', tech:'לא', techLoc:'גג', techOpen:'פתוחה', hvac:'מיני מרכזי + מפוצל', split:'כן', vrfStar:true},
+    q:{exec:'יש', sup:'אין', ptype:'חדש', space:'ממ״ד (דירתי)', addon:'לא', approved:'לא', tech:'לא', techLoc:'גג', techOpen:'פתוחה', hvac:'מיני מרכזי + מפוצל', split:'כן', vrfStar:true, unit:'קירית', lowIn:'לא', lowOut:'לא'},
     approvedFile:false, submitted:false, savedAt:'',
     wizMode:'full', wizStep:1,
     choice:{mamad:'רגיל', build:'תוספת ממ״ד למבנה קיים', lobby:'כולל מבואה', door:'הדף רסיסים', light:'80 ס״מ', win:'דו כנפי', hvac:'מיני מרכזי כללי', gas:'תשתיות גז מלאות', spr:'נדרש', cbl:'נדרש', scale:'1:50', motor:'מסתור', omerN:'2', omerP:'2.5'},
@@ -313,6 +313,12 @@ export default class OmerApp extends React.Component {
     const fFeed = [fld('feed','מקור ההזנה לממ״ד','text','לדוגמה: יחידה פנימית במסדרון')];
     const fVrf = [fld('vrfLoc','מיקום היחידה','text','גג / מסתור / חצר')];
     const isVrf = S.q.hvac === 'VRF';
+    const fUnitDims = [fld('unitW','רוחב יחידת המיזוג (ס״מ)','num'), fld('unitH','גובה יחידת המיזוג (ס״מ)','num')];
+    // a lowered ceiling answered "yes" needs its height (Oren: yes / no, and the measure when yes)
+    const need = x => x.value || x.err ? x : {...x, err:'יש להזין גובה', hasErr:!!S.touched[x.key], style:inp(!!S.touched[x.key])+';direction:ltr;text-align:right'};
+    const lowInYes = S.q.lowIn === 'כן', lowOutYes = S.q.lowOut === 'כן';
+    const fLowIn = lowInYes ? [need(fld('lowInH','גובה הנמכת התקרה הפנימית (ס״מ)','num'))] : [];
+    const fLowOut = lowOutYes ? [need(fld('lowOutH','גובה הנמכת התקרה החיצונית (ס״מ)','num'))] : [];
     const SECS = S.wizMode === 'quick' ? ['char','upload','summary'] : ['proj','exec','sup','char','hvac','upload','summary'];
     const SEC_NAMES = {proj:'פרטי פרויקט', exec:'קבלן ביצוע', sup:'חברת פיקוח', char:'אפיון פרויקט', hvac:'מיזוג', upload:'העלאת השרטוט', summary:'סיכום ושליחה'};
     const wStep = Math.min(S.wizStep, SECS.length), cur = SECS[wStep-1];
@@ -321,7 +327,7 @@ export default class OmerApp extends React.Component {
       exec:S.q.exec === 'יש' ? [...fExec, ...execContacts.flatMap(c => c.fields)] : [],
       sup:S.q.sup === 'יש' ? fSup : [],
       char:fCharNums,
-      hvac:[...fHvacNums, ...fFeed, ...(isVrf ? fVrf : [])]
+      hvac:[...(isVrf ? fVrf : []), ...fUnitDims, ...fHvacNums, ...fFeed, ...fLowIn, ...fLowOut]
     })[sec] || [];
     const gateOk = fields => {
       if(!fields.some(x => x.err)) return true;
@@ -337,11 +343,15 @@ export default class OmerApp extends React.Component {
         ...Array.from({length:S.ecN}, (_, i) => ['איש קשר '+(i+1), [F['ec'+i+'Name'],F['ec'+i+'Phone'],F['ec'+i+'Email']].filter(Boolean).join(' · ')])]),
       sup:Q.sup === 'אין' ? rows([['חברת פיקוח','אין']]) : rows([['שם',F.supName],['טלפון',F.supPhone],['מייל',F.supEmail]]),
       char:rows([['סוג',Q.ptype],['מספר דירות',F.units],['שטח (מ״ר)',F.area],['משרדים (מ״ר)',F.offices],['תעשייה (מ״ר)',F.industry],['מספר קומות טיפוסיות',F.typFloors],['מספר ממ״דים בקומה',F.mamadsPerFloor],['סוג מרחב מוגן',Q.space],['תוספת ממ״ד למבנה קיים',Q.addon],['תוכניות מיגון מאושרות',Q.approved === 'כן' ? (S.approvedFile ? 'כן · קובץ צורף' : 'כן · לא צורף קובץ') : 'לא']]),
-      hvac:rows([['תחתית תקרת בטון',F.ceilBottom && F.ceilBottom+' ס״מ'],['פני ריצוף ותקרה',F.floorCeil && F.floorCeil+' ס״מ'],['מיקום הבניין',F.bldgLoc],
-        ['קומה טכנית',Q.tech === 'קיימת' ? [Q.techLoc === 'אחר' ? (F.techOther || 'אחר') : Q.techLoc, Q.techOpen].join(' · ') : 'לא'],
-        ['שיטת מיזוג',Q.hvac],['מפוצל לכל החדרים',Q.split],['מקור הזנה לממ״ד',F.feed],
+      hvac:rows([['שיטת מיזוג',Q.hvac],
         ...(isVrf ? [['יחידת VRF חיצונית',[F.vrfLoc, Q.vrfStar ? 'מסומנת ★' : ''].filter(Boolean).join(' · ')]] : []),
-        ['מעברי קיר / רצפה','ת״י 4442 חלק 5']]),
+        ['מפוצל לכל החדרים',Q.split],
+        ['יחידת מיזוג',[Q.unit, F.unitW && F.unitH ? F.unitW+'×'+F.unitH+' ס״מ' : ''].filter(Boolean).join(' · ')],
+        ['תחתית תקרת בטון',F.ceilBottom && F.ceilBottom+' ס״מ'],['פני ריצוף ותקרה',F.floorCeil && F.floorCeil+' ס״מ'],['מיקום הבניין',F.bldgLoc],
+        ['מקור הזנה לממ״ד',F.feed],['מעברי קיר / רצפה','ת״י 4442 חלק 5'],
+        ['קומה טכנית',Q.tech === 'קיימת' ? [Q.techLoc === 'אחר' ? (F.techOther || 'אחר') : Q.techLoc, Q.techOpen].join(' · ') : 'לא'],
+        ['הנמכת תקרה פנימית',lowInYes ? 'כן'+(F.lowInH ? ' · '+F.lowInH+' ס״מ' : '') : 'לא'],
+        ['הנמכת תקרה חיצונית',lowOutYes ? 'כן'+(F.lowOutH ? ' · '+F.lowOutH+' ס״מ' : '') : 'לא']]),
       upload:rows([['קובץ', S.fileReady ? S.upload.name : '']])
     };
 
@@ -560,7 +570,7 @@ export default class OmerApp extends React.Component {
         this.setStep(wStep + 1);
       },
       wizPrev:() => wStep === 1 ? this.go('plans') : this.setStep(wStep - 1),
-      fProj, fDev, fExec, execContacts, fSup, fCharNums, fHvacNums, fTechOther, fFeed, fVrf,
+      fProj, fDev, fExec, execContacts, fSup, fCharNums, fHvacNums, fTechOther, fFeed, fVrf, fUnitDims, fLowIn, fLowOut, lowInYes, lowOutYes,
       addContact:() => this.setState(s => ({ecN:s.ecN + 1}), () => this.saveDraft()),
       qExec:qOpts('exec',['יש','אין'],true), hasExec:Q.exec === 'יש',
       qSup:qOpts('sup',['יש','אין'],true), hasSup:Q.sup === 'יש',
@@ -573,6 +583,7 @@ export default class OmerApp extends React.Component {
       qTech:qOpts('tech',['קיימת','לא']), techYes:Q.tech === 'קיימת', techOther:Q.techLoc === 'אחר',
       qTechLoc:qOpts('techLoc',['גג','מרתף','אחר']), qTechOpen:qOpts('techOpen',['פתוחה','סגורה']),
       qHvac:qOpts('hvac',['מיני מרכזי + מפוצל','VRF','מערכת נפרדת']), qSplit:qOpts('split',['כן','לא']), isVrf,
+      qUnit:qOpts('unit',['קירית','תקרתית']), qLowIn:qOpts('lowIn',['כן','לא']), qLowOut:qOpts('lowOut',['כן','לא']),
       toggleStar:() => this.pickQ('vrfStar', !Q.vrfStar),
       starMark:Q.vrfStar ? '✓' : '',
       starBox:'width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;border:1px solid '+(Q.vrfStar ? acc : '#C9C6BC')+';background:'+(Q.vrfStar ? acc : '#fff'),

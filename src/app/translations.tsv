@@ -476,3 +476,17 @@ DXF · שכבות OMER	DXF · OMER layers	DXF · calques OMER
 מיזוג אוויר	Air conditioning	Climatisation
 מספר קומות טיפוסיות	Number of typical floors	Nombre d'étages types
 מספר ממ״דים בקומה	Safe rooms per floor	Abris (ממ״ד) par étage
+יחידת מיזוג קירית או תקרתית	Wall or ceiling AC unit	Unité murale ou plafonnière
+קירית	Wall	Murale
+תקרתית	Ceiling	Plafonnière
+רוחב יחידת המיזוג (ס״מ)	AC unit width (cm)	Largeur de l'unité de climatisation (cm)
+גובה יחידת המיזוג (ס״מ)	AC unit height (cm)	Hauteur de l'unité de climatisation (cm)
+מידות היחידה: אם ידועות	Unit dimensions: if known	Dimensions de l'unité : si connues
+האם קיימת הנמכת תקרה פנימית?	Is there a lowered ceiling inside?	Y a-t-il un faux plafond intérieur ?
+האם קיימת הנמכת תקרה חיצונית?	Is there a lowered ceiling outside?	Y a-t-il un faux plafond extérieur ?
+גובה הנמכת התקרה הפנימית (ס״מ)	Inside lowered ceiling height (cm)	Hauteur du faux plafond intérieur (cm)
+גובה הנמכת התקרה החיצונית (ס״מ)	Outside lowered ceiling height (cm)	Hauteur du faux plafond extérieur (cm)
+הנמכת תקרה פנימית	Inside lowered ceiling	Faux plafond intérieur
+הנמכת תקרה חיצונית	Outside lowered ceiling	Faux plafond extérieur
+יחידת מיזוג	AC unit	Unité de climatisation
+יש להזין גובה	Enter a height	Indiquez une hauteur

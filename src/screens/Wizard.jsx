@@ -343,7 +343,86 @@ export default function Wizard({ v }) {
               <>
                 {" "}
                 <div style={sx("background:#fff;border:1px solid #DEDCD5;padding:26px;display:flex;flex-direction:column;gap:24px")}>
-                  <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 20px")}>
+                  <div>
+                    {" "}
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>שיטת מיזוג</div>
+                    {" "}
+                    <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
+                      {(v.qHvac || []).map((o, i19) => (
+                        <Fragment key={i19}>
+                          <button onClick={o.go} style={sx(o.style)}>{tx(o.label)}</button>
+                        </Fragment>
+                      ))}
+                    </div>
+                    {" "}
+                  </div>
+                  {v.isVrf ? (
+                    <>
+                      <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
+                        {" "}
+                        <div style={sx("font-size:13px;font-weight:500;margin-bottom:12px")}>יחידת VRF חיצונית</div>
+                        {" "}
+                        <div style={sx("display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap")}>
+                          <div style={sx("flex:1;min-width:220px;max-width:420px")}>
+                            {" "}
+                            {(v.fVrf || []).map((x, i22) => (
+                              <Fragment key={i22}>
+                                {" "}
+                                <div style={sx("min-width:0")}>
+                                  <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
+                                  <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
+                                </div>
+                                {" "}
+                              </Fragment>
+                            ))}
+                            {" "}
+                          </div>
+                          <div onClick={v.toggleStar} style={sx("display:flex;align-items:center;gap:9px;height:40px;cursor:pointer;font-size:13px")}>
+                            <span style={sx(v.starBox)}>{tx(v.starMark)}</span>
+                            {"סימון בכוכבית (★) בתוכנית "}
+                          </div>
+                        </div>
+                        {" "}
+                      </div>
+                    </>
+                  ) : null}
+                  <div>
+                    {" "}
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>מפוצל לכל החדרים</div>
+                    {" "}
+                    <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
+                      {(v.qSplit || []).map((o, i20) => (
+                        <Fragment key={i20}>
+                          <button onClick={o.go} style={sx(o.style)}>{tx(o.label)}</button>
+                        </Fragment>
+                      ))}
+                    </div>
+                    {" "}
+                  </div>
+                  <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>יחידת מיזוג קירית או תקרתית</div>
+                    <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
+                      {(v.qUnit || []).map((o, k) => (
+                        <Fragment key={k}>
+                          <button onClick={o.go} style={sx(o.style)}>{tx(o.label)}</button>
+                        </Fragment>
+                      ))}
+                    </div>
+                    <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 20px;margin-top:16px")}>
+                      {(v.fUnitDims || []).map((x, k) => (
+                        <Fragment key={k}>
+                          <div style={sx("min-width:0")}>
+                            <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
+                            <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
+                            {x.hasErr ? <div style={sx("font-size:11.5px;color:#C2255C;margin-top:5px")}>{tx(x.err)}</div> : null}
+                          </div>
+                        </Fragment>
+                      ))}
+                    </div>
+                    <div style={sx("font-size:11.5px;color:#8C8A82;margin-top:6px")}>מידות היחידה: אם ידועות</div>
+                  </div>
+                  <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
+                    <div style={sx("display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 20px")}>
                     {(v.fHvacNums || []).map((x, i14) => (
                       <Fragment key={i14}>
                         <div style={sx("min-width:0")}>
@@ -357,6 +436,28 @@ export default function Wizard({ v }) {
                         </div>
                       </Fragment>
                     ))}
+                  </div>
+                  </div>
+                  <div style={sx("max-width:520px;border-top:1px solid #EDEBE4;padding-top:22px")}>
+                    {" "}
+                    {(v.fFeed || []).map((x, i21) => (
+                      <Fragment key={i21}>
+                        {" "}
+                        <div style={sx("min-width:0")}>
+                          <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
+                          <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
+                        </div>
+                        {" "}
+                      </Fragment>
+                    ))}
+                    {" "}
+                  </div>
+                  <div style={sx("border-top:1px solid #EDEBE4;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px")}>
+                    <span style={sx("font-weight:500")}>מעברי קיר / רצפה</span>
+                    <span style={sx("color:#6B6A63")}>
+                      {"לפי התקן של התקן עומר · "}
+                      <span style={sx("font-family:'IBM Plex Mono',monospace")}>ת״י 4442 חלק 5</span>
+                    </span>
                   </div>
                   <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
                     {" "}
@@ -428,83 +529,52 @@ export default function Wizard({ v }) {
                     {" "}
                   </div>
                   <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
-                    {" "}
-                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>שיטת מיזוג</div>
-                    {" "}
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>האם קיימת הנמכת תקרה פנימית?</div>
                     <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
-                      {(v.qHvac || []).map((o, i19) => (
-                        <Fragment key={i19}>
+                      {(v.qLowIn || []).map((o, k) => (
+                        <Fragment key={k}>
                           <button onClick={o.go} style={sx(o.style)}>{tx(o.label)}</button>
                         </Fragment>
                       ))}
                     </div>
-                    {" "}
+                    {v.lowInYes ? (<>
+                    <div style={sx("max-width:320px;margin-top:16px")}>
+                      {(v.fLowIn || []).map((x, k) => (
+                        <Fragment key={k}>
+                          <div style={sx("min-width:0")}>
+                            <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
+                            <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
+                            {x.hasErr ? <div style={sx("font-size:11.5px;color:#C2255C;margin-top:5px")}>{tx(x.err)}</div> : null}
+                          </div>
+                        </Fragment>
+                      ))}
+                    </div>
+                    </>) : null}
                   </div>
-                  <div>
-                    {" "}
-                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>מפוצל לכל החדרים</div>
-                    {" "}
+                  <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
+                    <div style={sx("font-size:13px;font-weight:500;margin-bottom:10px")}>האם קיימת הנמכת תקרה חיצונית?</div>
                     <div style={sx("display:flex;gap:8px;flex-wrap:wrap")}>
-                      {(v.qSplit || []).map((o, i20) => (
-                        <Fragment key={i20}>
+                      {(v.qLowOut || []).map((o, k) => (
+                        <Fragment key={k}>
                           <button onClick={o.go} style={sx(o.style)}>{tx(o.label)}</button>
                         </Fragment>
                       ))}
                     </div>
-                    {" "}
-                  </div>
-                  <div style={sx("max-width:520px")}>
-                    {" "}
-                    {(v.fFeed || []).map((x, i21) => (
-                      <Fragment key={i21}>
-                        {" "}
-                        <div style={sx("min-width:0")}>
-                          <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
-                          <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
-                        </div>
-                        {" "}
-                      </Fragment>
-                    ))}
-                    {" "}
-                  </div>
-                  {v.isVrf ? (
-                    <>
-                      <div style={sx("border-top:1px solid #EDEBE4;padding-top:22px")}>
-                        {" "}
-                        <div style={sx("font-size:13px;font-weight:500;margin-bottom:12px")}>יחידת VRF חיצונית</div>
-                        {" "}
-                        <div style={sx("display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap")}>
-                          <div style={sx("flex:1;min-width:220px;max-width:420px")}>
-                            {" "}
-                            {(v.fVrf || []).map((x, i22) => (
-                              <Fragment key={i22}>
-                                {" "}
-                                <div style={sx("min-width:0")}>
-                                  <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
-                                  <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
-                                </div>
-                                {" "}
-                              </Fragment>
-                            ))}
-                            {" "}
+                    {v.lowOutYes ? (<>
+                    <div style={sx("max-width:320px;margin-top:16px")}>
+                      {(v.fLowOut || []).map((x, k) => (
+                        <Fragment key={k}>
+                          <div style={sx("min-width:0")}>
+                            <label style={sx("display:block;font-size:12px;font-weight:500;margin-bottom:6px")}>{tx(x.label)}</label>
+                            <input value={x.value} onChange={x.set} onBlur={x.blur} type={x.type} placeholder={x.ph} style={sx(x.style)} />
+                            {x.hasErr ? <div style={sx("font-size:11.5px;color:#C2255C;margin-top:5px")}>{tx(x.err)}</div> : null}
                           </div>
-                          <div onClick={v.toggleStar} style={sx("display:flex;align-items:center;gap:9px;height:40px;cursor:pointer;font-size:13px")}>
-                            <span style={sx(v.starBox)}>{tx(v.starMark)}</span>
-                            {"סימון בכוכבית (★) בתוכנית "}
-                          </div>
-                        </div>
-                        {" "}
-                      </div>
-                    </>
-                  ) : null}
-                  <div style={sx("border-top:1px solid #EDEBE4;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px")}>
-                    <span style={sx("font-weight:500")}>מעברי קיר / רצפה</span>
-                    <span style={sx("color:#6B6A63")}>
-                      {"לפי התקן של התקן עומר · "}
-                      <span style={sx("font-family:'IBM Plex Mono',monospace")}>ת״י 4442 חלק 5</span>
-                    </span>
+                        </Fragment>
+                      ))}
+                    </div>
+                    </>) : null}
                   </div>
-                </div>
+</div>
                 {" "}
               </>
             ) : null}
