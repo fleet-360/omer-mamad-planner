@@ -10,8 +10,8 @@ const screenFromHash = () => { const s = location.hash.replace(/^#\/?/, ''); ret
 export const MAX_DRAWING_BYTES = 80 * 1024 * 1024;
 const EXPORT_NAME = 'B2-F05-OMER.dxf'; // the demo plan: B2, floor 5, lot 115
 // Oren, 31:53: the shelter type follows from the building type (residential: apartment or floor
-// shelter; public / commercial: institutional). Pending his confirmation of this mapping.
-const SPACES = {'מגורים':['ממ״ד (דירתי)','ממ״ק (קומתי)'], 'ציבורי':['ממ״מ (מוסדי)'], 'מסחרי':['ממ״מ (מוסדי)']};
+// shelter; public / commercial / industrial: institutional). Pending his confirmation of this mapping.
+const SPACES = {'מגורים':['ממ״ד (דירתי)','ממ״ק (קומתי)'], 'ציבורי':['ממ״מ (מוסדי)'], 'מסחרי':['ממ״מ (מוסדי)'], 'תעשייתי':['ממ״מ (מוסדי)']};
 const projSpace = S => {
   const build = SPACES[S.q.build] ? S.q.build : (S.suBuild || []).find(b => SPACES[b]) || 'מגורים';
   const spaces = SPACES[build];
@@ -521,7 +521,7 @@ export default class OmerApp extends React.Component {
       toggleClass:() => this.set('classOpen', !S.classOpen),
       classFieldStyle:'display:flex;align-items:center;gap:8px;min-height:40px;padding:6px 11px;border:1px solid '+(S.classOpen ? acc : '#DEDCD5')+';background:#FBFAF8;cursor:pointer',
       classTags:S.suBuild.map(o => ({label:o, remove:e => { e.stopPropagation(); this.setState(s => ({suBuild:s.suBuild.filter(x => x !== o)})); }})),
-      classOpts:['ציבורי','מסחרי','מגורים'].map(o => {
+      classOpts:['ציבורי','מסחרי','תעשייתי','מגורים'].map(o => {
         const on = S.suBuild.includes(o);
         return {label:o, mark:on ? '✓' : '',
           boxStyle:'width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;border:1px solid '+(on ? acc : '#C9C6BC')+';background:'+(on ? acc : '#fff'),
